@@ -1,0 +1,131 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+}
+
+main {
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+h1 {
+    padding: 30px 10px 5px;
+    border-bottom: 2px black solid;
+    margin: 0 auto;
+}
+
+/*------------ Navigerings meny ------------*/
+nav {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    background-image: linear-gradient(to right, rgb(255, 65, 65) 70%, white);
+    box-shadow: 2px 5px 5px rgb(106, 106, 106);
+    padding-left: 25px;
+    align-items: center;
+}
+nav a{
+    text-decoration: none;
+    color: white;
+    font-size: 26px;
+    padding: 15px;
+}
+
+nav a:not(:first-child):hover { /*Ändra bakgrundsfärg när musen finns över länkarna, förutom loggan*/
+    color: black;
+    background-color: white;
+}
+
+nav #logga{
+    padding: 0;
+}
+
+nav #logga img{
+    width: 43px;
+    padding-top: 10px;
+}
+nav #activeNav{
+    background-color: white;
+    color: black;
+}
+/*Dropdown*/
+#dropbtn{
+    border: none;
+    background-color: unset;
+    font-size: 26px;
+    cursor: pointer;
+    padding: 15px;
+    color: white;
+}
+#dropbtn:hover{
+    color: black;
+    background-color: white;
+}
+#dropdown{
+    display: none;
+    color: white;
+    background-color: rgb(255, 103, 103);
+    position:absolute;
+    width: 70%;
+    text-align: center;
+    box-shadow: 2px 5px 5px rgb(106, 106, 106);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0 0 10px 10px;
+}
+#dropdown a{
+    display: inline-block;
+    padding: 20px 10px;
+    text-decoration: none;
+    color: white;
+    width: 20%;
+    font-size: 24px;
+}
+#dropdown a:hover { /*Ändra bakgrundsfärg när musen finns över länkarna, förutom loggan*/
+    color: black;
+    background-color: white;
+}
+/*------------------------------------------*/
+
+/*------------ Knappar på startsidan ------------*/
+#startButtons{
+    text-align: center;
+}
+#startButtons div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#startButtons h2{
+    margin-bottom: 5px;
+}
+#startButtons a {
+    margin: 0 8px;
+    background-color: rgb(255, 65, 65);
+    text-decoration: none;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 10px;
+    font-size: 22px;
+    border: rgb(255, 255, 255) solid 1px;
+    display: flex;
+    align-items: center;
+    height: 35px;
+}
+#startButtons a:hover {
+    background-color: white;
+    color: black;
+    border: black solid 1px;
+}
+#startButtons a p{
+    margin: 0;
+}
+#startButtons a img{
+    height: 35px;
+    margin-left: 10px;
+}
+/*------------------------------------------*/
