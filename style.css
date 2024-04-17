@@ -5,6 +5,7 @@ html {
 body {
     height: 100%;
     margin: 0;
+    background-color: whitesmoke;
 }
 
 main {
@@ -14,7 +15,7 @@ main {
 
 h1 {
     padding: 30px 10px 5px;
-    border-bottom: 2px black solid;
+    
     margin: 0 auto;
 }
 
@@ -129,7 +130,7 @@ nav #activeNav {
     color: white;
     border-radius: 10px;
     font-size: 22px;
-    border: rgb(255, 255, 255) solid 1px;
+    border:rgba(0, 0, 0, 0.604) solid 2px;
     display: flex;
     align-items: center;
     height: 35px;
