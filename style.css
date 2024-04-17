@@ -15,11 +15,13 @@ main {
 
 h1 {
     padding: 30px 10px 5px;
-    
+    border-radius: 15px;
     margin: 0 auto;
     background-color: rgb(255, 65, 65);
-    opacity: 70%;
+    opacity: 80%;
     color: white;
+    padding: 20px;
+    text-align: center;
 }
 
 /*------------ Navigerings meny ------------*/
@@ -31,7 +33,7 @@ nav {
     box-shadow: 2px 5px 5px rgb(106, 106, 106);
     padding-left: 25px;
     align-items: center;
-    opacity: 80%;
+    opacity: 85%;
 }
 nav a{
     text-decoration: none;
@@ -40,9 +42,13 @@ nav a{
     padding: 15px;
 }
 
-p{
+#firstinfo{
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 30px;
+    background-color:rgba(255, 65, 65, 0.851);
+    padding: 20px;
+    border-radius: 20px;
+    color:white;
 }
 
 nav a:not(:first-child):hover { /*Ändra bakgrundsfärg när musen finns över länkarna, förutom loggan*/
@@ -78,7 +84,7 @@ nav #activeNav{
 #dropdown{
     display: none;
     color: white;
-    background-color: rgb(255, 103, 103);
+    background-color:white;
     position:absolute;
     width: 70%;
     text-align: center;
@@ -91,13 +97,13 @@ nav #activeNav{
     display: inline-block;
     padding: 20px 10px;
     text-decoration: none;
-    color: white;
+    color: black;
     width: 20%;
     font-size: 24px;
 }
 #dropdown a:hover { /*Ändra bakgrundsfärg när musen finns över länkarna, förutom loggan*/
-    color: black;
-    background-color: white;
+    color: white;
+    background-color:rgba(255, 65, 65, 0.725);
 }
 /*------------------------------------------*/
 
