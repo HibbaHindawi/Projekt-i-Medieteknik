@@ -18,13 +18,18 @@ h1 {
     margin: 0 auto;
 }
 
+p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
 /*------------ Navigerings meny ------------*/
 nav {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    background-image: linear-gradient(to right, rgb(255, 65, 65) 70%, white);
-    box-shadow: 2px 5px 5px rgb(106, 106, 106);
+    background-color: rgb(255, 65, 65);
+    opacity: 90%;
     padding-left: 25px;
     align-items: center;
 }
