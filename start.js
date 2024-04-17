@@ -15,7 +15,7 @@ function OpenAndCloseNavBar() {
         navMenu.style.display = "block";
         navActive = true;
     }
-    else{ //annars stäng menyn och sätt variabel till inaktiv
+    else { //annars stäng menyn och sätt variabel till inaktiv
         navMenu.style.display = "none";
         dropdownBtn.style.color = "";
         dropdownBtn.style.backgroundColor = "";
