@@ -17,11 +17,9 @@ h1 {
     padding: 30px 10px 5px;
     
     margin: 0 auto;
-}
-
-p {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 20px;
+    background-color: rgb(255, 65, 65);
+    opacity: 70%;
+    color: white;
 }
 
 /*------------ Navigerings meny ------------*/
@@ -29,41 +27,43 @@ nav {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    background-color: rgb(255, 65, 65);
-    opacity: 90%;
+    background-image: linear-gradient(to right, rgb(255, 65, 65) 70%, white);
+    box-shadow: 2px 5px 5px rgb(106, 106, 106);
     padding-left: 25px;
     align-items: center;
+    opacity: 80%;
 }
-
-nav a {
+nav a{
     text-decoration: none;
     color: white;
     font-size: 26px;
     padding: 15px;
 }
 
-nav a:not(:first-child):hover {
-    /*Ändra bakgrundsfärg när musen finns över länkarna, förutom loggan*/
+p{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+}
+
+nav a:not(:first-child):hover { /*Ändra bakgrundsfärg när musen finns över länkarna, förutom loggan*/
     color: black;
     background-color: white;
 }
 
-nav #logga {
+nav #logga{
     padding: 0;
 }
 
-nav #logga img {
+nav #logga img{
     width: 43px;
     padding-top: 10px;
 }
-
-nav #activeNav {
+nav #activeNav{
     background-color: white;
     color: black;
 }
-
 /*Dropdown*/
-#dropbtn {
+#dropbtn{
     border: none;
     background-color: unset;
     font-size: 26px;
@@ -71,17 +71,15 @@ nav #activeNav {
     padding: 15px;
     color: white;
 }
-
-#dropbtn:hover {
+#dropbtn:hover{
     color: black;
     background-color: white;
 }
-
-#dropdown {
+#dropdown{
     display: none;
     color: white;
     background-color: rgb(255, 103, 103);
-    position: absolute;
+    position:absolute;
     width: 70%;
     text-align: center;
     box-shadow: 2px 5px 5px rgb(106, 106, 106);
@@ -89,8 +87,7 @@ nav #activeNav {
     transform: translateX(-50%);
     border-radius: 0 0 10px 10px;
 }
-
-#dropdown a {
+#dropdown a{
     display: inline-block;
     padding: 20px 10px;
     text-decoration: none;
@@ -103,24 +100,20 @@ nav #activeNav {
     color: black;
     background-color: white;
 }
-
 /*------------------------------------------*/
 
 /*------------ Knappar på startsidan ------------*/
-#startButtons {
+#startButtons{
     text-align: center;
 }
-
-#startButtons div {
+#startButtons div{
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-
-#startButtons h2 {
+#startButtons h2{
     margin-bottom: 5px;
 }
-
 #startButtons a {
     margin: 0 8px;
     background-color: rgb(255, 65, 65);
@@ -129,23 +122,20 @@ nav #activeNav {
     color: white;
     border-radius: 10px;
     font-size: 22px;
-    border:rgba(0, 0, 0, 0.604) solid 2px;
+    border: rgb(255, 255, 255) solid 1px;
     display: flex;
     align-items: center;
     height: 35px;
 }
-
 #startButtons a:hover {
     background-color: white;
     color: black;
     border: black solid 1px;
 }
-
-#startButtons a p {
+#startButtons a p{
     margin: 0;
 }
-
-#startButtons a img {
+#startButtons a img{
     height: 35px;
     margin-left: 10px;
 }
