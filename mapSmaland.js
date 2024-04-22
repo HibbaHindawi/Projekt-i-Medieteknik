@@ -2,7 +2,7 @@ let myMap; //Objekt för kartan;
 let addMarkers = []; //Array med objekt för markörer
 
 function init() {
-    initMap("map");
+    initMap("mapSma");
 }
 window.addEventListener("load", init);
 

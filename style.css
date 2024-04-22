@@ -18,21 +18,24 @@ h1 {
     padding: 30px 10px 5px;
     border-radius: 15px;
     margin: 0 auto;
-    color: rgba(0, 0, 0, 0.66);
+    color: rgb(40, 40, 40);
     padding: 20px;
-    font-size: 45px;
+    font-size: 30px;
     padding-top: 50px;
 }
 
 /*------------ Stora loggan och textfältet ------------*/
-#firstinfo {
-    font-size: 23px;
+.info {
+    font-size: 18px;
     padding: 20px;
     border-radius: 20px;
-    color: rgb(70, 70, 70);
+    color: rgb(0, 0, 0);
+    background-color: rgb(240, 240, 240);
 }
 
 #logo {
+    display: block;
+    margin: 0 auto;
     padding-top: 50px;
 }
 
@@ -53,7 +56,7 @@ nav a {
     color: white;
     font-size: 26px;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
 }
 
 
@@ -65,14 +68,14 @@ nav a:not(:first-child):hover {
 
 
 nav #logga {
-    padding: 1;
+    padding: 10px;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 50%;
+    display: flex;
 }
 
 nav #logga img {
-    width: 43px;
-    padding-top: 10px;
+    width: 35px;
 }
 
 nav #activeNav {
@@ -110,11 +113,17 @@ nav #activeNav {
 
 #dropdown a {
     display: inline-block;
-    padding: 20px 10px;
+    padding: 20px 5px;
     text-decoration: none;
     color: black;
-    width: 20%;
+    width: 30%;
     font-size: 24px;
+    margin: 0;
+}
+
+#dropdown a:first-child, #dropdown a:last-child {
+    border-right: gray 1px solid;
+    border-left: gray 1px solid;
 }
 
 #dropdown a:hover {
@@ -123,9 +132,9 @@ nav #activeNav {
     background-color: rgba(255, 65, 65, 0.725);
 }
 
-#categoriesicons {
+#dropdown a img {
+    margin-left: 10px;
     width: 30px;
-    margin-left: -50px;
 }
 
 /*------------------------------------------*/
@@ -133,6 +142,7 @@ nav #activeNav {
 /*------------ Knappar på startsidan ------------*/
 #startButtons {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 #startButtons div {
@@ -159,6 +169,11 @@ nav #activeNav {
     height: 35px;
 }
 
+#startButtons #nearStart {
+    width: 90px;
+    margin: 10px auto;
+}
+
 #startButtons a:hover {
     background-color: white;
     color: black;
@@ -178,10 +193,49 @@ nav #activeNav {
 
 /*----------------- Karta -------------------*/
 #map {
-    margin: 20px auto 0px;
-    height: 650px;
+    margin: 5px auto 0px;
+    height: 400px;
+    width: 100%;
+    color: red;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+#mapSma {
+    margin: 5px auto 0px;
     /*Ändra inte för att hela småland ska kunna visas*/
-    width: 95%;
+    height: 650px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+#placeDesc {
+    margin-bottom: 20px;
+}
+
+#placeDesc>div {
+    background-color: rgb(240, 240, 240);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#placeDesc div h2 {
+    margin-bottom: 0;
+}
+
+#placeDesc .PushIn {
+    display: inline;
+}
+
+#placeDesc .PushIn p {
+    display: inline;
+    margin: 5px 5px 5px 0px;
+}
+#placeDesc a{
+    display: block;
+    margin-top: 10px;
 }
 
 /*------------------------------------------*/
