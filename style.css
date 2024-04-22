@@ -18,8 +18,10 @@ h1 {
     padding: 30px 10px 5px;
     border-radius: 15px;
     margin: 0 auto;
-    color: black;
+    color: rgba(0, 0, 0, 0.66);
     padding: 20px;
+    font-size: 45px;
+    padding-top: 50px;
 }
 
 /*------------ Stora loggan och textfältet ------------*/
@@ -27,7 +29,7 @@ h1 {
     font-size: 23px;
     padding: 20px;
     border-radius: 20px;
-    color: black;
+    color: rgb(70, 70, 70);
 }
 
 #logo {
@@ -119,6 +121,11 @@ nav #activeNav {
     /*Ändra bakgrundsfärg när musen finns över länkarna, förutom loggan*/
     color: white;
     background-color: rgba(255, 65, 65, 0.725);
+}
+
+#categoriesicons {
+    width: 30px;
+    margin-left: -50px;
 }
 
 /*------------------------------------------*/
