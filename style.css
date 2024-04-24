@@ -18,9 +18,9 @@ h1 {
     padding: 30px 10px 5px;
     border-radius: 15px;
     margin: 0 auto;
-    color: rgb(40, 40, 40);
+    color: rgb(70, 70, 70);
     padding: 20px;
-    font-size: 30px;
+    font-size: 40px;
     padding-top: 50px;
 }
 
@@ -29,7 +29,7 @@ h1 {
     font-size: 18px;
     padding: 20px;
     border-radius: 20px;
-    color: rgb(0, 0, 0);
+    color: rgb(55, 55, 55);
     background-color: rgb(240, 240, 240);
 }
 
@@ -121,7 +121,8 @@ nav #activeNav {
     margin: 0;
 }
 
-#dropdown a:first-child, #dropdown a:last-child {
+#dropdown a:first-child,
+#dropdown a:last-child {
     border-right: gray 1px solid;
     border-left: gray 1px solid;
 }
@@ -233,9 +234,13 @@ nav #activeNav {
     display: inline;
     margin: 5px 5px 5px 0px;
 }
-#placeDesc a{
+
+#placeDesc a {
     display: block;
     margin-top: 10px;
 }
 
+#placeinfo{
+    color: rgb(55, 55, 55);
+}
 /*------------------------------------------*/
