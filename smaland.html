@@ -11,8 +11,7 @@
     <!--Länkar till API för karta-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="sendinfo.js"></script>
-    <script src="mapSmaland.js"></script>
+    <script src="map.js"></script>
 </head>
 
 <body>
@@ -30,6 +29,26 @@
     <main>
         <h1>Aktiviteter i Småland</h1>
         <div id="mapSma"></div>
+        <div id="filter-system">
+            <div id="city"></div>
+            <div id="type">
+                <legend>Typ av aktivitet:</legend>
+                <input id="museum" type="checkbox">
+                <label for="museum">Museum</label>
+                <input id="slott" type="checkbox">
+                <label for="slott">Slott</label>
+                <input id="kyrka" type="checkbox">
+                <label for="kyrka">Kyrka</label>
+                <input id="fornlamning" type="checkbox">
+                <label for="fornlamning">Fornlämning</label>
+                <input id="atelje" type="checkbox">
+                <label for="atelje">Ateljé</label>
+                <input id="konstgalleri" type="checkbox">
+                <label for="konstgalleri">Konstgalleri</label>
+                <input id="biograf" type="checkbox">
+                <label for="biograf">Biograf</label>
+            </div>
+        </div>
         <div id="placeDesc">
             <!--javascript ska lägga in div med information här-->
         </div>
