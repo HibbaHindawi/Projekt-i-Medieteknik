@@ -211,6 +211,16 @@ nav #activeNav {
     border-radius: 10px;
 }
 
+#mapInfo{
+    margin: 5px auto 0px;
+    height: 400px;
+    width: 100%;
+    color: red;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
 #placeDesc {
     margin-bottom: 20px;
 }
@@ -220,6 +230,7 @@ nav #activeNav {
     padding: 10px;
     border-radius: 10px;
     margin-top: 20px;
+    color: rgb(55, 55, 55);
 }
 
 #placeDesc div h2 {
@@ -238,10 +249,6 @@ nav #activeNav {
 #placeDesc a {
     display: block;
     margin-top: 10px;
-}
-
-#placeinfo {
-    color: rgb(55, 55, 55);
 }
 
 /*------------------------------------------*/
