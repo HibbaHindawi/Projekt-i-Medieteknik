@@ -1,6 +1,6 @@
 let infoElem;
 let id;
-let selectUrl = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&provinces=småland";
+let selectUrl = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall";
 let h1Elem;
 let specificMap;
 

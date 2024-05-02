@@ -10,7 +10,10 @@ function init() {
         initMap("mapSma");
         filterResults()
     }
-    document.querySelector("#slott").addEventListener("change", filterResults);//Ändra detta
+    let filter = document.querySelectorAll("#filter-system input");
+    for(let i = 0; i < filter.length; i++){
+        filter[i].addEventListener("change", filterResults);
+    }
 }
 window.addEventListener("load", init);
 
@@ -22,23 +25,54 @@ function initMap(id) {
     myMap.setView([57.32, 15.5], 7.35);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+        maxZoom: 20,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(myMap);
 }
 
 function filterResults() {
-    let filterBar = document.querySelector("#filter-system");
-    if (filterBar) {
-        url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall";//Base URL
-        //Filter för städer och län
+    const museumID = document.querySelector("#museum");
+    const slottID = document.querySelector("#slott");
+    const kyrkaID = document.querySelector("#kyrka");
+    const fornlamningID = document.querySelector("#fornlamning");
+    const ateljeID = document.querySelector("#atelje");
+    const konstgalleriID = document.querySelector("#konstgalleri");
+    const biografID = document.querySelector("#biograf");
 
-        //Filter för aktiviteter
+    url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall";//Base URL
+    let typeURL = "&descriptions="; //filter url för typ av aktivitet
+    let cityURL = "&cities=";
+    //Filter för städer och län
 
-        //Övriga filter
 
-        url+= "&descriptions=museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"
+    //Filter för aktiviteter
+    if(museumID.checked == true){
+        typeURL+= "museum,";
     }
+    if(slottID.checked == true){
+        typeURL+= "slott,";
+    }
+    if(kyrkaID.checked == true){
+        typeURL+= "kyrka,";
+    }
+    if(fornlamningID.checked == true){
+        typeURL+= "fornlämning,";
+    }
+    if(ateljeID.checked == true){
+        typeURL+= "ateljé,";
+    }
+    if(konstgalleriID.checked == true){
+        typeURL+= "konstgalleri,";
+    }
+    if(biografID.checked == true){
+        typeURL+= "biograf,";
+    }
+    if(museumID.checked != true && slottID.checked != true && kyrkaID.checked != true && fornlamningID.checked != true && ateljeID.checked != true && konstgalleriID.checked != true && biografID.checked != true){
+        typeURL+= "museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"
+    }
+
+    //Övriga filter
+    url+= typeURL;
     getSMAPI();
 }
 
@@ -64,7 +98,7 @@ function showMarkers(data) {
         button.href = "information.html";
         button.id = SMAPIdata.id;
         button.innerText = "Läs mer här";
-        marker = L.marker([lat, lng]);
+        let marker = L.marker([lat, lng]);
         marker.bindPopup("<b>" + SMAPIdata.name + "</b><br> Typ: " + SMAPIdata.description + "<br>" + button.outerHTML);
         marker.addEventListener("click", () => {
             // Store the SMAPIdata.id in localStorage
