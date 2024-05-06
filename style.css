@@ -272,7 +272,8 @@ nav #activeNav {
     body {}
 
     #map,
-    #mapSma {
+    #mapSma,
+    #mapInfo {
         z-index: 0;
     }
 
