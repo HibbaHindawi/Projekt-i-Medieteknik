@@ -35,7 +35,6 @@ h3 {}
     padding: 20px;
     border-radius: 20px;
     color: rgb(55, 55, 55);
-    border: solid 2px;
     box-shadow: 2px 2px 1px;
 }
 
@@ -51,7 +50,7 @@ nav {
     flex-direction: row;
     gap: 15px;
     background-color: rgb(255, 65, 65);
-    box-shadow: 2px 5px 5px rgb(106, 106, 106);
+    box-shadow: 2px 2px 5px rgb(106, 106, 106);
     padding-left: 25px;
     align-items: center;
     opacity: 85%;
@@ -60,7 +59,7 @@ nav {
 nav a {
     text-decoration: none;
     color: white;
-    font-size: 26px;
+    font-size: 23px;
     padding: 15px;
     border-radius: 0 0 5px 5px;
 }
@@ -81,7 +80,7 @@ nav #logga {
 }
 
 nav #logga img {
-    width: 35px;
+    width: 30px;
 }
 
 nav #activeNav {
@@ -93,7 +92,7 @@ nav #activeNav {
 #dropbtn {
     border: none;
     background-color: unset;
-    font-size: 26px;
+    font-size: 23px;
     cursor: pointer;
     padding: 15px;
     color: white;
@@ -268,7 +267,7 @@ nav #activeNav {
 /*------------------------------------------*/
 
 /*----------------- Media queries -------------------*/
-@media screen and (max-width:765px) {
+@media screen and (max-width:700px) {
     body {}
 
     #map,
@@ -308,7 +307,7 @@ nav #activeNav {
         transition: 0.5s ease;
         transform: translateX(-300px);
         border-radius: 10px;
-        box-shadow: 2px 5px 5px rgb(106, 106, 106);
+        box-shadow: 2px 2px 5px rgb(106, 106, 106);
         z-index: 1;
     }
 
