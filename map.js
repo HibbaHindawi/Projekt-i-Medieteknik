@@ -14,6 +14,7 @@ function init() {
     for(let i = 0; i < filter.length; i++){
         filter[i].addEventListener("change", filterResults);
     }
+    
 }
 window.addEventListener("load", init);
 
@@ -107,4 +108,8 @@ function showMarkers(data) {
         markers.addLayer(marker);
     }
     markers.addTo(myMap);
+}
+
+function zIndex(){
+    myMap.style.zIndex = "0";
 }
