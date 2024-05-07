@@ -87,62 +87,6 @@ nav #activeNav {
     background-color: white;
     color: black;
 }
-
-/*Dropdown*/
-#dropbtn {
-    border: none;
-    background-color: unset;
-    font-size: 23px;
-    cursor: pointer;
-    padding: 15px;
-    color: white;
-}
-
-#dropbtn:hover {
-    color: black;
-    background-color: white;
-}
-
-#dropdown {
-    display: none;
-    color: white;
-    background-color: white;
-    position: absolute;
-    width: 70%;
-    text-align: center;
-    box-shadow: 2px 5px 5px rgb(106, 106, 106);
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 0 0 10px 10px;
-}
-
-#dropdown a {
-    display: inline-block;
-    padding: 20px 5px;
-    text-decoration: none;
-    color: black;
-    width: 30%;
-    font-size: 24px;
-    margin: 0;
-}
-
-#dropdown a:first-child,
-#dropdown a:last-child {
-    border-right: gray 1px solid;
-    border-left: gray 1px solid;
-}
-
-#dropdown a:hover {
-    /*Ändra bakgrundsfärg när musen finns över länkarna, förutom loggan*/
-    color: white;
-    background-color: rgba(255, 65, 65, 0.725);
-}
-
-#dropdown a img {
-    margin-left: 10px;
-    width: 30px;
-}
-
 .slide {
     display: none;
 }
@@ -150,23 +94,18 @@ nav #activeNav {
 #checkboxLines {
     display: none;
 }
-
-/*------------------------------------------*/
-
 /*------------ Knappar på startsidan ------------*/
 #startButtons {
     text-align: center;
     margin-bottom: 20px;
-}
-
-#startButtons div {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-#startButtons h2 {
+#startH2 {
     margin-bottom: 5px;
+    text-align: center;
 }
 
 #startButtons a {
@@ -181,11 +120,6 @@ nav #activeNav {
     display: flex;
     align-items: center;
     height: 35px;
-}
-
-#startButtons #nearStart {
-    width: 90px;
-    margin: 10px auto;
 }
 
 #startButtons a:hover {
@@ -453,3 +387,75 @@ nav #activeNav {
     }
 
 }
+/*------------Filter Systemet--------------*/
+#filter-system {
+    position: relative;
+    margin-top: 5px;
+    padding: 20px;
+    background-color: rgb(240, 240, 240);
+}
+
+#filter-system #reset {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    width: 100px;
+    top: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(255, 254, 251);
+    padding: 5px 10px;
+    font-size: 14px;
+    text-align: center;
+    border: black solid 1px;
+    border-radius: 5px;
+}
+#filter-system #reset:hover{
+    background-color: rgb(225, 225, 224);
+}
+#filter-system #city{
+    margin-top: 10px;
+}
+#filter-system legend{
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: black solid 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#filter-system input, #filter-system label {
+    cursor: pointer;
+}
+#filterH2{
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+#filter-system #popular, #filter-system #type{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-bottom: 5px;
+}
+
+#showMore {
+    background-color: rgb(255, 254, 251);
+    cursor: pointer;
+    max-width: 80px;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: black solid 1px;
+    border-radius: 5px;
+    margin: 0 auto 10px;
+}
+
+#showMore:hover {
+    background-color: rgb(225, 225, 224);
+}
+
+#moreCities {
+    display: none;
+}
+
+/*------------------------------------------*/
