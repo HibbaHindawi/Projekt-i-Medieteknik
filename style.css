@@ -87,6 +87,7 @@ nav #activeNav {
     background-color: white;
     color: black;
 }
+
 .slide {
     display: none;
 }
@@ -94,6 +95,7 @@ nav #activeNav {
 #checkboxLines {
     display: none;
 }
+
 /*------------ Knappar på startsidan ------------*/
 #startButtons {
     text-align: center;
@@ -112,12 +114,11 @@ nav #activeNav {
     margin: 0 8px;
     background-color: rgb(255, 65, 65);
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 30px 10px;
     color: white;
     border-radius: 10px;
     font-size: 22px;
     border: rgb(255, 255, 255) solid 1px;
-    display: flex;
     align-items: center;
     height: 35px;
 }
@@ -135,6 +136,7 @@ nav #activeNav {
 #startButtons a img {
     height: 35px;
     margin-left: 10px;
+    margin-bottom: -10px;
 }
 
 /*------------------------------------------*/
@@ -277,6 +279,22 @@ nav #activeNav {
         border: none;
     }
 
+    #startButtons a {
+        text-align: center;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: -20px;
+        margin-bottom: 40px;
+    }
+
+    #startButtons a img {
+        height: 35px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+    }
+
     #slidelogo {
         padding: 66px;
         background-color: white;
@@ -387,6 +405,7 @@ nav #activeNav {
     }
 
 }
+
 /*------------Filter Systemet--------------*/
 #filter-system {
     position: relative;
@@ -409,13 +428,16 @@ nav #activeNav {
     border: black solid 1px;
     border-radius: 5px;
 }
-#filter-system #reset:hover{
+
+#filter-system #reset:hover {
     background-color: rgb(225, 225, 224);
 }
-#filter-system #city{
+
+#filter-system #city {
     margin-top: 10px;
 }
-#filter-system legend{
+
+#filter-system legend {
     font-size: 18px;
     font-weight: bold;
     border-bottom: black solid 1px;
@@ -423,16 +445,19 @@ nav #activeNav {
     margin-bottom: 10px;
 }
 
-#filter-system input, #filter-system label {
+#filter-system input,
+#filter-system label {
     cursor: pointer;
 }
-#filterH2{
+
+#filterH2 {
     font-size: 20px;
     margin-bottom: 0;
     margin-left: 10px;
 }
 
-#filter-system #popular, #filter-system #type{
+#filter-system #popular,
+#filter-system #type {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     margin-bottom: 5px;
