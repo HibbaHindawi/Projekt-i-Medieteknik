@@ -50,7 +50,7 @@ function createDesc(data) {
         const rating = (parseFloat(specificData.rating)).toFixed(2);
         const newDiv = document.createElement("div");
         newDiv.classList.add("placeinfo");
-        newDiv.innerHTML = "<div><p>Adress: " + specificData.address + "</p><p>Stad: " + specificData.city + "</p><a href='blank'> " + specificData.website + "</a><p>Telefonnummer: " + specificData.phone_number + "</p><div class='PushIn'><p>Betyg: " + rating + " | " + "</p><p> Pris: " + specificData.price_range + "</p></div><p>Kategori/Typ: " + specificData.description + " | " + specificData.type + "</p><p>Beskrivning: " + specificData.abstract + "</p>";
+        newDiv.innerHTML = "<div><p>Adress: " + specificData.address + "</p><p>Stad: " + specificData.city + "</p><a href='"+ specificData.website+"'> " + specificData.website + "</a><p>Telefonnummer: " + specificData.phone_number + "</p><div class='PushIn'><p>Betyg: " + rating + " | " + "</p><p> Pris: " + specificData.price_range + "</p></div><p>Kategori/Typ: " + specificData.description + " | " + specificData.type + "</p><p>Beskrivning: " + specificData.abstract + "</p>";
         if (specificData.outdoors == "Y") {
             newDiv.innerHTML += "<p>Utomhus: Ja</p>";
         }

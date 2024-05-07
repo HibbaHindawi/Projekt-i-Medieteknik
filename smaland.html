@@ -7,7 +7,6 @@
     <title>Kulturella aktiviteter i Småland| (Insert name of organisation)</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="/Bilder/logoculturalactivities.png">
-    <script src="index.js"></script>
     <!--Länkar till API för karta-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -18,38 +17,254 @@
     <nav>
         <a href="index.html" id="logga"><img src="/Bilder/logoculturalactivitiesblittleblack.png" alt="Logga"></a>
         <a href="index.html">Start</a>
-        <a href="smaland.html" id="activeNav">Småland</a>
-        <a href="oland.html">Öland</a>
+        <a href="smaland.html" id="activeNav">Aktiviteter</a>
         <a href="near.html">Nära dig</a>
-        <div id="dropbtn">Kategorier</div>
     </nav>
-    <div id="dropdown">
-        <a href="Kategorier_HTML/slott.html">Slott <img src="/Bilder/castleicon.png" alt="Slott ikon för kategorier"></a><a href="Kategorier_HTML/biograf.html">Biografer<img src="/Bilder/cinemaicon.png" alt="Klaffbräda ikon för kategorier"></a><a href="Kategorier_HTML/museum.html">Museum <img src="/Bilder/museumicon.png" alt="Byggnad ikon för kategorier"></a>
-    </div>
     <main>
-        <h1>Aktiviteter i Småland</h1>
+        <h1>Aktiviteter i Småland och Öland</h1>
         <div id="mapSma"></div>
+        <h2 id="filterH2">Filtrera resultat:</h2>
         <div id="filter-system">
+            <div id="reset">Återställ Filter</div>
             <div id="city">
                 <legend>Stad:</legend>
-                <input id="vaxjo" type="checkbox">
+                <div id="popular">
+                    <div><input id="alvesta" type="checkbox">
+                        <label for="alvesta">Alvesta</label>
+                    </div>
+                    <div><input id="borgholm" type="checkbox">
+                        <label for="borgholm">Borgholm</label>
+                    </div>
+                    <div><input id="huskvarna" type="checkbox">
+                        <label for="huskvarna">Huskvarna</label>
+                    </div>
+                    <div><input id="jonkoping" type="checkbox">
+                        <label for="jonkoping">Jönköping</label>
+                    </div>
+                    <div><input id="kalmar" type="checkbox">
+                        <label for="kalmar">Kalmar</label>
+                    </div>
+                    <div><input id="ljungby" type="checkbox">
+                        <label for="ljungby">Ljungby</label>
+                    </div>
+                    <div><input id="nybro" type="checkbox">
+                        <label for="nybro">Nybro</label>
+                    </div>
+                    <div><input id="varnamo" type="checkbox">
+                        <label for="varnamo">Värnamo</label>
+                    </div>
+                    <div><input id="vaxjo" type="checkbox">
+                        <label for="vaxjo">Växjö</label>
+                    </div>
+                    <div><input id="vetlanda" type="checkbox">
+                        <label for="vetlanda">Vetlanda</label>
+                    </div>
+                    <div><input id="vimmerby" type="checkbox">
+                        <label for="vimmerby">Vimmerby</label>
+                    </div>
+                    <div><input id="almhult" type="checkbox">
+                        <label for="almhult">Älmhult</label>
+                    </div>
+                </div>
+                <div id="showMore">Se mer</div>
+                <div id="moreCities">
+                    <div>
+                        <input id="berga" type="checkbox">
+                        <label for="berga">Berga</label>
+                    </div>
+                    <div>
+                        <input id="braas" type="checkbox">
+                        <label for="braas">Braås</label>
+                    </div>
+                    <div>
+                        <input id="dadesjo" type="checkbox">
+                        <label for="dadesjo">Dädesjö</label>
+                    </div>
+                    <div>
+                        <input id="degerhamn" type="checkbox">
+                        <label for="degerhamn">Degerhamn</label>
+                    </div>
+                    <div>
+                        <input id="dorarp" type="checkbox">
+                        <label for="dorarp">Dörarp</label>
+                    </div>
+                    <div>
+                        <input id="eksjo" type="checkbox">
+                        <label for="eksjo">Eksjö</label>
+                    </div>
+                    <div>
+                        <input id="farjestaden" type="checkbox">
+                        <label for="farjestaden">Färjestaden</label>
+                    </div>
+                    <div>
+                        <input id="gemla" type="checkbox">
+                        <label for="gemla">Gemla</label>
+                    </div>
+                    <div>
+                        <input id="gnosjo" type="checkbox">
+                        <label for="gnosjo">Gnosjö</label>
+                    </div>
+                    <div>
+                        <input id="goteryd" type="checkbox">
+                        <label for="goteryd">Göteryd</label>
+                    </div>
+                    <div>
+                        <input id="granna" type="checkbox">
+                        <label for="granna">Gränna</label>
+                    </div>
+                    <div>
+                        <input id="gripenberg" type="checkbox">
+                        <label for="gripenberg">Gripenberg</label>
+                    </div>
+                    <div>
+                        <input id="halltorp" type="checkbox">
+                        <label for="halltorp">Halltorp</label>
+                    </div>
+                    <div>
+                        <input id="hamneda" type="checkbox">
+                        <label for="hamneda">Hamneda</label>
+                    </div>
+                    <div>
+                        <input id="hjartlanda" type="checkbox">
+                        <label for="hjartlanda">Hjärtlanda</label>
+                    </div>
+                    <div>
+                        <input id="hovmantorp" type="checkbox">
+                        <label for="hovmantorp">Hovmantorp</label>
+                    </div>
+                    <div>
+                        <input id="hultsfred" type="checkbox">
+                        <label for="hultsfred">Hultsfred</label>
+                    </div>
+                    <div>
+                        <input id="hylletofta" type="checkbox">
+                        <label for="hylletofta">Hylletofta</label>
+                    </div>
+                    <div>
+                        <input id="ingelstad" type="checkbox">
+                        <label for="ingelstad">Ingelstad</label>
+                    </div>
+                    <div>
+                        <input id="kanna" type="checkbox">
+                        <label for="kanna">Känna</label>
+                    </div>
+                    <div>
+                        <input id="kavsjo" type="checkbox">
+                        <label for="kavsjo">Kävsjö</label>
+                    </div>
+                    <div>
+                        <input id="langasjo" type="checkbox">
+                        <label for="langasjo">Långasjö</label>
+                    </div>
+                    <div>
+                        <input id="lessebo" type="checkbox">
+                        <label for="lessebo">Lessebo</label>
+                    </div>
+                    <div>
+                        <input id="lidhult" type="checkbox">
+                        <label for="lidhult">Lidhult</label>
+                    </div>
+                    <div>
+                        <input id="linneryd" type="checkbox">
+                        <label for="linneryd">Linneryd</label>
+                    </div>
+                    <div>
+                        <input id="ljungbyholm" type="checkbox">
+                        <label for="ljungbyholm">Ljungbyholm</label>
+                    </div>
+                    <div>
+                        <input id="malilla" type="checkbox">
+                        <label for="malilla">Målilla</label>
+                    </div>
+                    <div>
+                        <input id="morbylanga" type="checkbox">
+                        <label for="morbylanga">Mörbylånga</label>
+                    </div>
+                    <div>
+                        <input id="myresjo" type="checkbox">
+                        <label for="myresjo">Myresjö</label>
+                    </div>
+                    <div>
+                        <input id="norrhult" type="checkbox">
+                        <label for="norrhult">Norrhult</label>
+                    </div>
+                    <div>
+                        <input id="norrahammar" type="checkbox">
+                        <label for="norrahammar">Norrahammar</label>
+                    </div>
+                    <div>
+                        <input id="pelarne" type="checkbox">
+                        <label for="pelarne">Pelarne</label>
+                    </div>
+                    <div>
+                        <input id="savsjo" type="checkbox">
+                        <label for="savjo">Sävsjö</label>
+                    </div>
+                    <div>
+                        <input id="sandby" type="checkbox">
+                        <label for="sandby">Sandby</label>
+                    </div>
+                    <div>
+                        <input id="skruv" type="checkbox">
+                        <label for="skruv">Skruv</label>
+                    </div>
+                    <div>
+                        <input id="stockaryd" type="checkbox">
+                        <label for="stockaryd">Stockaryd</label>
+                    </div>
+                    <div>
+                        <input id="valdemarsvik" type="checkbox">
+                        <label for="valdemarsvik">Valdemarsvik</label>
+                    </div>
+                    <div>
+                        <input id="visingso" type="checkbox">
+                        <label for="visingso">Visingsö</label>
+                    </div>
+                    <div>
+                        <input id="vissefjarda" type="checkbox">
+                        <label for="vissefjarda">Vissefjärda</label>
+                    </div>
+                    <div>
+                        <input id="virseram" type="checkbox">
+                        <label for="virseram">Virseram</label>
+                    </div>
+                    <div>
+                        <input id="virsaram" type="checkbox">
+                        <label for="virsaram">Virsaram</label>
+                    </div>
+                    <div>
+                        <input id="aseda" type="checkbox">
+                        <label for="aseda">Åseda</label>
+                    </div>
+
+                </div>
             </div>
-            <div id="type">
+            <div>
                 <legend>Typ av aktivitet:</legend>
-                <input id="museum" type="checkbox">
-                <label for="museum">Museum</label>
-                <input id="slott" type="checkbox">
-                <label for="slott">Slott</label>
-                <input id="kyrka" type="checkbox">
-                <label for="kyrka">Kyrka</label>
-                <input id="fornlamning" type="checkbox">
-                <label for="fornlamning">Fornlämning</label>
-                <input id="atelje" type="checkbox">
-                <label for="atelje">Ateljé</label>
-                <input id="konstgalleri" type="checkbox">
-                <label for="konstgalleri">Konstgalleri</label>
-                <input id="biograf" type="checkbox">
-                <label for="biograf">Biograf</label>
+                <div id="type">
+                    <div>
+                        <input id="museum" type="checkbox">
+                        <label for="museum">Museum</label>
+                    </div>
+                    <div><input id="slott" type="checkbox">
+                        <label for="slott">Slott</label>
+                    </div>
+                    <div><input id="kyrka" type="checkbox">
+                        <label for="kyrka">Kyrka</label>
+                    </div>
+                    <div><input id="fornlamning" type="checkbox">
+                        <label for="fornlamning">Fornlämning</label>
+                    </div>
+                    <div><input id="atelje" type="checkbox">
+                        <label for="atelje">Ateljé</label>
+                    </div>
+                    <div><input id="konstgalleri" type="checkbox">
+                        <label for="konstgalleri">Konstgalleri</label>
+                    </div>
+                    <div><input id="biograf" type="checkbox">
+                        <label for="biograf">Biograf</label>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="placeDesc">
