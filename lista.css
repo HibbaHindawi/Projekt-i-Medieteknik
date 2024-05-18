@@ -1,0 +1,203 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+h1 {
+    border-radius: 15px;
+    margin: 0 auto;
+    font-size: 32px;
+}
+
+/*------------ Stora loggan och textfältet ------------*/
+.info {
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 20px;
+    color: rgb(55, 55, 55);
+    border: solid 2px;
+}
+
+#logo {
+    display: block;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+/*------------ Navigerings meny ------------*/
+nav {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    background-color: rgb(255, 65, 65);
+    box-shadow: 2px 5px 5px rgb(106, 106, 106);
+    padding-left: 25px;
+    align-items: center;
+    opacity: 85%;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 26px;
+    padding: 15px;
+    border-radius: 0 0 5px 5px;
+}
+
+
+nav a:not(:first-child):hover {
+    /*Ändra bakgrundsfärg när musen finns över länkarna, förutom loggan*/
+    color: black;
+    background-color: white;
+}
+
+
+nav #logga {
+    padding: 10px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+}
+
+nav #logga img {
+    width: 35px;
+}
+
+nav #activeNav {
+    background-color: white;
+    color: black;
+}
+
+#results{
+    width: 75%;
+    overflow: auto;
+    height: 750px;
+    border: gray solid 2px;
+}
+#results_favorites{
+    width: 100%;
+    overflow: auto;
+    height: 750px;
+    border: gray solid 2px;
+}
+#error{
+    text-align: center;
+    font-size: 25px;
+    color: rgb(255, 34, 34);
+}
+#listPush{
+    display: flex;
+    flex-direction: row;
+}
+#filterParent{
+    width: 280px;
+}
+.parentDiv{
+    display: flex;
+    background-color: rgb(240, 240, 240);
+    border-right: gray solid 2px;
+}
+.parentDiv:not(:last-of-type){
+    border-bottom: black solid 1px;
+}
+.parentDiv:hover{
+    background-color: rgb(187, 187, 187);
+}
+.plats{
+    text-decoration: none;
+    color: black;
+    width: 95%;
+}
+.plats div{
+    padding: 14px 10px 5px;
+}
+.favorite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.favorite img{
+    cursor: pointer;
+    height: 20px;
+}
+#filter-system {
+    position: relative;
+    margin-top: 5px;
+    padding: 20px;
+    background-color: rgb(240, 240, 240);
+    margin-right: 10px;
+    height: 630px;
+    overflow: auto;
+}
+#filter-system label{
+    font-size: 18px;
+}
+#filter-system input{
+    height: 20px;
+}
+#filter-system img{
+    width: 17px;
+}
+#reset {
+    cursor: pointer;
+    margin: 10px 0;
+    background-color: rgb(255, 254, 251);
+    padding: 5px 10px;
+    font-size: 14px;
+    text-align: center;
+    border: black solid 1px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+#reset:hover{
+    background-color: rgb(225, 225, 224);
+}
+#filter-system legend{
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: black solid 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#filterH2{
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+hgroup{
+    padding: 25px 0px 10px 0px;
+    color: rgb(70, 70, 70);
+}
+hgroup h2{
+    border-bottom: gray solid 2px;
+    font-size: 18px;
+    margin-top: 5px;
+}
+.title{
+    font-size: 20px;
+}
+.plats .infoList{
+    display: inline-block;
+    padding: 0;
+}
+.infoList span{
+    font-weight: bold;
+}
+.infoList p{
+    margin: 10px;
+}
+.infoList img{
+    width: 18px;
+    height: 18px;
+}

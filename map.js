@@ -1,72 +1,62 @@
 let myMap; //Objekt för kartan;
-let addMarkers = []; //Array med objekt för markörer
 let url; //URL för SMAPI
-let placeInfoDescElem;
 let markers = L.layerGroup();
-let showMoreBtn;
-let showMoreElem;
 let counter = 0; //Kontroll för funktionen showMoreCity
 let cityCounter;
 
 //filter
-//Typ av aktivitetet
-let museumID;
-let slottID;
-let kyrkaID;
-let fornlamningID;
-let ateljeID;
-let konstgalleriID;
-let biografID;
+let savedElem;
+let childElem;
+let studentElem;
+let seniorElem;
+let outdoorElem;
 
+let activityTypeElem;
+let activitiyId = ["museum", "slott", "kyrka", "fornlämning", "ateljé", "konstgalleri", "biograf"];
+let citiesElem;
 let moreCitiesElem;
-let idOne = ["alvesta", "borgholm", "huskvarna", "jönköping", "kalmar", "ljungby", "nybro", "värnamo", "växjö", "vetlanda", "vimmerby", "älmhult"];
-let idTwo = ["berga", "braås", "dädesjö", "degerhamn", "dörarp", "eksjö", "färjestaden", "gemla", "gnosjö", "göteryd", "gränna", "gripenberg", "halltorp", "hamneda", "hjärtlanda", "hovmantorp", "hultsfred", "hylletofta", "ingelstad", "känna", "kävsjö", "långasjö", "lessebo", "lidhult", "linneryd", "ljungbyholm", "målilla", "mörbylånga", "myresjö", "norrhult", "norrahammar", "pelarne", "sävsjö", "sandby", "skruv", "stockaryd", "valdemarsvik", "visingsö", "vissefjärda", "virseram", "åseda"];
-//Stad
-let vaxjoID;
-let alvestaID;
-let borgholmID;
-let huskvarnaID;
-let jonkopingID;
-let kalmarID;
-let ljungbyID;
-let nybroID;
-let varnamoID;
-let vetlandaID;
-let vimmerbyID;
-let almhultID;
+let idOne = ["alvesta", "älmhult", "åseda", "berga", "borgholm", "braås", "dädesjö", "degerhamn", "dörarp", "eksjö", "färjestaden", "gemla", "gnosjö", "göteryd", "gränna", "gripenberg", "halltorp", "hamneda", "hjärtlanda", "hovmantorp", "hultsfred", "huskvarna", "hylletofta", "ingelstad", "jönköping", "kalmar", "känna", "kävsjö", "långasjö", "lessebo", "lidhult", "linneryd", "ljungby", "ljungbyholm", "målilla", "mörbylånga", "myresjö", "norrhult", "norrahammar", "nybro", "pelarne", "sävsjö", "sandby", "skruv", "stockaryd", "valdemarsvik", "värnamo", "växjö", "vetlanda", "vimmerby", "visingsö", "vissefjärda", "virseram", "virsaram"];
+//Ikoner
+let icons = L.Icon.extend({
+    options: {
+        iconSize: [25, 50],
+        iconAnchor: [12, 49],
+        popupAnchor: [0, -50]
+    }
+})
+let museumIcon = new icons({
+    iconUrl: "Bilder/Markers/markermuseum.png"
+})
+let slottIcon = new icons({
+    iconUrl: "Bilder/Markers/markercastle.png"
+})
+let kyrkaIcon = new icons({
+    iconUrl: "Bilder/Markers/markerchurch.png"
+})
+let fornlamningIcon = new icons({
+    iconUrl: "Bilder/Markers/markerancientmonument.png"
+})
+let konstgalleriIcon = new icons({
+    iconUrl: "Bilder/Markers/markerartgallery.png"
+})
+let biografIcon = new icons({
+    iconUrl: "Bilder/Markers/markercinema.png"
+})
 
 
 function init() {
-    museumID = document.querySelector("#museum");
-    slottID = document.querySelector("#slott");
-    kyrkaID = document.querySelector("#kyrka");
-    fornlamningID = document.querySelector("#fornlamning");
-    ateljeID = document.querySelector("#atelje");
-    konstgalleriID = document.querySelector("#konstgalleri");
-    biografID = document.querySelector("#biograf");
-    vaxjoID = document.querySelector("#vaxjo");
-    alvestaID = document.querySelector("#alvesta");
-    borgholmID = document.querySelector("#borgholm");
-    huskvarnaID = document.querySelector("#huskvarna");
-    jonkopingID = document.querySelector("#jonkoping");
-    kalmarID = document.querySelector("#kalmar");
-    ljungbyID = document.querySelector("#ljungby");
-    nybroID = document.querySelector("#nybro");
-    varnamoID = document.querySelector("#varnamo");
-    vetlandaID = document.querySelector("#vetlanda");
-    vimmerbyID = document.querySelector("#vimmerby");
-    almhultID = document.querySelector("#almhult")
+    activityTypeElem = document.querySelectorAll("#type input");
+    citiesElem = document.querySelectorAll("#popular input");
+    savedElem = document.querySelector("#favoriteBox");
+    childElem = document.querySelector("#child");
+    studentElem = document.querySelector("#student");
+    seniorElem = document.querySelector("#senior");
+    outdoorElem = document.querySelector("#outdoor");
 
-    moreCitiesElem = document.querySelectorAll("#moreCities input");
-
-    showMoreBtn = document.querySelector("#showMore");
-    showMoreElem = document.querySelector("#moreCities");
-    showMoreBtn.addEventListener("click", showMoreCity);
-
-    placeInfoDescElem = document.querySelector("#placeDesc");
     if (document.querySelector("#mapSma")) {
         initMap("mapSma");
-        filterResults()
+        resetFilter();
+        filterResults();
     }
     let filter = document.querySelectorAll("#filter-system input");
     for (let i = 0; i < filter.length; i++) {
@@ -81,7 +71,7 @@ function initMap(id) {
         zoomDelta: 1,
         zoomSnap: 0.35
     }); //Ändra koordinater för att byta det som visas på kartan, sista värdet är zoom värdet, minska för att zooma ut och tvärtom
-    myMap.setView([57.32, 15.5], 7.35);
+    myMap.setView([57.32, 15.5], 8);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
@@ -89,127 +79,69 @@ function initMap(id) {
     }).addTo(myMap);
 }
 
-function showMoreCity() {
-    if (counter == 0) { //Om den är inaktiv, gör den aktiv
-        showMoreElem.style.display = "grid";
-        showMoreElem.style.gridTemplateColumns= "repeat(5, 1fr)";
-        showMoreElem.style.marginBottom = "20px";
-        counter = 1;
-    }
-    else { //Om den är aktiv, gör den inaktiv
-        showMoreElem.style.display = "none";
-        counter = 0;
-    }
-
-}
-
 function filterResults() {
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall";//Base URL
     let typeURL = "&descriptions="; //filter url för typ av aktivitet
     let cityURL = "&cities=";
+    let typeCounter = 0;
     cityCounter = 0;
     //Filter för städer och län
-    if (vaxjoID.checked == true) {
-        cityURL += "växjö,";
-    }
-    if(alvestaID.checked == true){
-        cityURL += "alvesta,";
-    }
-    if(borgholmID.checked == true){
-        cityURL += "borgholm,";
-    }
-    if(huskvarnaID.checked == true){
-        cityURL += "huskvarna,";
-    }
-    if(jonkopingID.checked == true){
-        cityURL += "jönköping,";
-    }
-    if(kalmarID.checked == true){
-        cityURL += "kalmar,";
-    }
-    if(ljungbyID.checked == true){
-        cityURL += "ljungby,";
-    }
-    if(nybroID.checked == true){
-        cityURL += "nybro,";
-    }
-    if(varnamoID.checked == true){
-        cityURL += "värnamo,";
-    }
-    if(vetlandaID.checked == true){
-        cityURL += "vetlanda";
-    }
-    if(vimmerbyID.checked == true){
-        cityURL += "vimmerby,";
-    }
-    if(almhultID.checked == true){
-        cityURL += "älmhult,";
-    }
-    for (let index = 0; index < moreCitiesElem.length; index++) {
-        if(moreCitiesElem[index].checked == true){
-            cityURL += idTwo[index] + ",";
+    for (let i = 0; i < citiesElem.length; i++) {
+        if (citiesElem[i].checked == true) {
+            cityURL += idOne[i] + ",";
         }
-        if (moreCitiesElem[index].checked == false) {
-            cityCounter++;
+        if (citiesElem[i].checked == false) {
+            cityCounter++
         }
     }
-    if (!vaxjoID.checked && !alvestaID.checked && !borgholmID.checked && !huskvarnaID.checked && !jonkopingID.checked && !kalmarID.checked && !ljungbyID.checked && !nybroID.checked && !varnamoID.checked && !vetlandaID.checked && !vimmerbyID.checked && !almhultID.checked && cityCounter == 42) {
+    if (cityCounter == 54) {
         cityURL = "";
     }
 
     //Filter för aktiviteter
-    if (museumID.checked == true) {
-        typeURL += "museum,";
+    for(let i = 0; i < activityTypeElem.length; i++){
+        if(activityTypeElem[i].checked == true){
+            typeURL += activitiyId[i] + ",";
+        }
+        if(activityTypeElem[i].checked == false){
+            typeCounter++;
+        }
     }
-    if (slottID.checked == true) {
-        typeURL += "slott,";
-    }
-    if (kyrkaID.checked == true) {
-        typeURL += "kyrka,";
-    }
-    if (fornlamningID.checked == true) {
-        typeURL += "fornlämning,";
-    }
-    if (ateljeID.checked == true) {
-        typeURL += "ateljé,";
-    }
-    if (konstgalleriID.checked == true) {
-        typeURL += "konstgalleri,";
-    }
-    if (biografID.checked == true) {
-        typeURL += "biograf,";
-    }
-    if (museumID.checked != true && slottID.checked != true && kyrkaID.checked != true && fornlamningID.checked != true && ateljeID.checked != true && konstgalleriID.checked != true && biografID.checked != true) {
+    if (typeCounter == 7) {
         typeURL += "museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"
+    }
+    let favoritesArray = localStorage.getItem("favorites").split(",");
+    if (favoritesArray != null && savedElem.checked == true) {
+        url += "&ids=" + favoritesArray;
+    }
+    if (childElem.checked == true) {
+        url += "&child_discount=Y";
+    }
+    if (studentElem.checked == true) {
+        url += "&student_discount=Y";
+    }
+    if (seniorElem.checked == true) {
+        url += "&senior_discount=Y";
+    }
+    if (outdoorElem.checked == true) {
+        url += "&outdoors=Y";
     }
     //Övriga filter
     url += typeURL + cityURL;
     getSMAPI();
 }
 function resetFilter() {
-    //Uncheck
-    museumID.checked = false;
-    slottID.checked = false;
-    kyrkaID.checked = false;
-    fornlamningID.checked = false;
-    ateljeID.checked = false;
-    konstgalleriID.checked = false;
-    biografID.checked = false;
-    vaxjoID.checked = false;
-    alvestaID.checked = false;
-    borgholmID.checked = false;
-    huskvarnaID.checked = false;
-    jonkopingID.checked = false;
-    kalmarID.checked = false;
-    ljungbyID.checked = false;
-    nybroID.checked = false;
-    varnamoID.checked = false;
-    vetlandaID.checked = false;
-    vimmerbyID.checked = false;
-    almhultID.checked = false;
-    for (let i = 0; i < moreCitiesElem.length; i++) {
-        moreCitiesElem[i].checked = false;
+    for (let i = 0; i < activityTypeElem.length; i++) {
+        activityTypeElem[i].checked = false;
     }
+    for (let i = 0; i < citiesElem.length; i++) {
+        citiesElem[i].checked = false;
+    }
+    savedElem.checked = false;
+    childElem.checked = false;
+    studentElem.checked = false;
+    seniorElem.checked = false;
+    outdoorElem.checked = false;
     filterResults();
 }
 function getSMAPI() {
@@ -226,6 +158,8 @@ function getSMAPI() {
 
 function showMarkers(data) {
     markers.clearLayers();
+    let currentActivity;
+    let currentIcon;
     for (let i = 0; i < data.payload.length; i++) {
         let SMAPIdata = data.payload[i];
         let lat = SMAPIdata.lat;
@@ -234,7 +168,26 @@ function showMarkers(data) {
         button.href = "information.html";
         button.id = SMAPIdata.id;
         button.innerText = "Läs mer här";
-        let marker = L.marker([lat, lng]);
+        currentActivity = SMAPIdata.description;
+        if (currentActivity == "Museum") {
+            currentIcon = museumIcon;
+        }
+        else if (currentActivity == "Slott") {
+            currentIcon = slottIcon;
+        }
+        else if (currentActivity == "Fornlämning") {
+            currentIcon = fornlamningIcon;
+        }
+        else if (currentActivity == "Biograf") {
+            currentIcon = biografIcon;
+        }
+        else if (currentActivity == "Kyrka") {
+            currentIcon = kyrkaIcon;
+        }
+        else {
+            currentIcon = konstgalleriIcon;
+        }
+        let marker = L.marker([lat, lng], { icon: currentIcon });
         marker.bindPopup("<b>" + SMAPIdata.name + "</b><br> Typ: " + SMAPIdata.description + "<br>" + button.outerHTML);
         marker.addEventListener("click", () => {
             // Store the SMAPIdata.id in localStorage

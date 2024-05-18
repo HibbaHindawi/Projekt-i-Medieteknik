@@ -1,41 +1,54 @@
 let myMap; //Objekt för kartan;
-let addMarkers = []; //Array med objekt för markörer
 let url; //URL för SMAPI
-let placeInfoDescElem;
 let markers = L.layerGroup();
-let showMoreBtn;
-let showMoreElem;
 
-//Typ av aktivitetet
-let museumID;
-let slottID;
-let kyrkaID;
-let fornlamningID;
-let ateljeID;
-let konstgalleriID;
-let biografID;
+let savedElem;
+let childElem;
+let studentElem;
+let seniorElem;
+let outdoorElem;
+
+let activityTypeElem;
+let activitiyId = ["museum", "slott", "kyrka", "fornlämning", "ateljé", "konstgalleri", "biograf"];
+//Ikoner
+let icons = L.Icon.extend({
+    options: {
+        iconSize: [25, 50],
+        iconAnchor: [12, 49],
+        popupAnchor: [0, -50]
+    }
+})
+let museumIcon = new icons({
+    iconUrl: "Bilder/Markers/markermuseum.png"
+})
+let slottIcon = new icons({
+    iconUrl: "Bilder/Markers/markercastle.png"
+})
+let kyrkaIcon = new icons({
+    iconUrl: "Bilder/Markers/markerchurch.png"
+})
+let fornlamningIcon = new icons({
+    iconUrl: "Bilder/Markers/markerancientmonument.png"
+})
+let konstgalleriIcon = new icons({
+    iconUrl: "Bilder/Markers/markerartgallery.png"
+})
+let biografIcon = new icons({
+    iconUrl: "Bilder/Markers/markercinema.png"
+})
 
 function init() {
-    navigator.permissions.query({name: 'geolocation'}).then((permission) => {
-        if (permission.state == 'granted') {
-            // Location sharing is already enabled
-            navigator.geolocation.getCurrentPosition((position) => {
-                initMap(position.coords.latitude, position.coords.longitude);
-            });
-        } else {
-            document.querySelector("#map").innerText = "För att se aktiviteter nära dig, behöver du dela din platsinformation. Vänligen tillåt denna behörighet så att vi kan ge dig relevanta resultat.";
-            getLocation();
-        }
-    });
-    museumID = document.querySelector("#museum");
-    slottID = document.querySelector("#slott");
-    kyrkaID = document.querySelector("#kyrka");
-    fornlamningID = document.querySelector("#fornlamning");
-    ateljeID = document.querySelector("#atelje");
-    konstgalleriID = document.querySelector("#konstgalleri");
-    biografID = document.querySelector("#biograf");
+    activityTypeElem = document.querySelectorAll("#type input");
+    savedElem = document.querySelector("#favoriteBox");
+    childElem = document.querySelector("#child");
+    studentElem = document.querySelector("#student");
+    seniorElem = document.querySelector("#senior");
+    outdoorElem = document.querySelector("#outdoor");
 
-    placeInfoDescElem = document.querySelector("#placeDesc");
+    initMap();
+    resetFilter();
+    filterResults();
+    
     let filter = document.querySelectorAll("#filter-system input");
     for (let i = 0; i < filter.length; i++) {
         filter[i].addEventListener("change", filterResults);
@@ -44,12 +57,8 @@ function init() {
 }
 window.addEventListener("load", init);
 
-function getLocation(){
-    navigator.geolocation.getCurrentPosition((position) => {initMap(position.coords.latitude, position.coords.longitude);});
-}
-
-function initMap(lat, lng) {
-    myMap = L.map("map").setView([lat, lng], 13); //Ändra koordinater för att byta det som visas på kartan, sista värdet är zoom värdet, minska för att zooma ut och tvärtom
+function initMap() {
+    myMap = L.map("map").locate({setView: true, maxZoom: 13}); //Ändra koordinater för att byta det som visas på kartan, sista värdet är zoom värdet, minska för att zooma ut och tvärtom
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -60,31 +69,34 @@ function initMap(lat, lng) {
 function filterResults() {
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall";//Base URL
     let typeURL = "&descriptions="; //filter url för typ av aktivitet
+    let typeCounter = 0;
 
-    //Filter för aktiviteter
-    if (museumID.checked == true) {
-        typeURL += "museum,";
+    for(let i = 0; i < activityTypeElem.length; i++){
+        if(activityTypeElem[i].checked == true){
+            typeURL += activitiyId[i] + ",";
+        }
+        if(activityTypeElem[i].checked == false){
+            typeCounter++;
+        }
     }
-    if (slottID.checked == true) {
-        typeURL += "slott,";
-    }
-    if (kyrkaID.checked == true) {
-        typeURL += "kyrka,";
-    }
-    if (fornlamningID.checked == true) {
-        typeURL += "fornlämning,";
-    }
-    if (ateljeID.checked == true) {
-        typeURL += "ateljé,";
-    }
-    if (konstgalleriID.checked == true) {
-        typeURL += "konstgalleri,";
-    }
-    if (biografID.checked == true) {
-        typeURL += "biograf,";
-    }
-    if (museumID.checked != true && slottID.checked != true && kyrkaID.checked != true && fornlamningID.checked != true && ateljeID.checked != true && konstgalleriID.checked != true && biografID.checked != true) {
+    if (typeCounter == 7) {
         typeURL += "museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"
+    }
+    let favoritesArray = localStorage.getItem("favorites").split(",");
+    if (favoritesArray != null && savedElem.checked == true) {
+        url += "&ids=" + favoritesArray;
+    }
+    if (childElem.checked == true) {
+        url += "&child_discount=Y";
+    }
+    if (studentElem.checked == true) {
+        url += "&student_discount=Y";
+    }
+    if (seniorElem.checked == true) {
+        url += "&senior_discount=Y";
+    }
+    if (outdoorElem.checked == true) {
+        url += "&outdoors=Y";
     }
     //Övriga filter
     url += typeURL;
@@ -92,13 +104,14 @@ function filterResults() {
 }
 function resetFilter() {
     //Uncheck
-    museumID.checked = false;
-    slottID.checked = false;
-    kyrkaID.checked = false;
-    fornlamningID.checked = false;
-    ateljeID.checked = false;
-    konstgalleriID.checked = false;
-    biografID.checked = false;
+    for (let i = 0; i < activityTypeElem.length; i++) {
+        activityTypeElem[i].checked = false;
+    }
+    savedElem.checked = false;
+    childElem.checked = false;
+    studentElem.checked = false;
+    seniorElem.checked = false;
+    outdoorElem.checked = false;
     filterResults();
 }
 function getSMAPI() {
@@ -115,6 +128,8 @@ function getSMAPI() {
 
 function showMarkers(data) {
     markers.clearLayers();
+    let currentActivity;
+    let currentIcon;
     for (let i = 0; i < data.payload.length; i++) {
         let SMAPIdata = data.payload[i];
         let lat = SMAPIdata.lat;
@@ -123,10 +138,27 @@ function showMarkers(data) {
         button.href = "information.html";
         button.id = SMAPIdata.id;
         button.innerText = "Läs mer här";
-        let marker = L.marker([lat, lng]);
-        marker.bindPopup("<b>" + SMAPIdata.name + "</b><br> Typ: " + SMAPIdata.description + "<br>" + button.outerHTML, {
-            fontSize: "10px"
-        });
+        currentActivity = SMAPIdata.description;
+        if (currentActivity == "Museum") {
+            currentIcon = museumIcon;
+        }
+        else if (currentActivity == "Slott") {
+            currentIcon = slottIcon;
+        }
+        else if (currentActivity == "Fornlämning") {
+            currentIcon = fornlamningIcon;
+        }
+        else if (currentActivity == "Biograf") {
+            currentIcon = biografIcon;
+        }
+        else if (currentActivity == "Kyrka") {
+            currentIcon = kyrkaIcon;
+        }
+        else {
+            currentIcon = konstgalleriIcon;
+        }
+        let marker = L.marker([lat, lng], { icon: currentIcon });
+        marker.bindPopup("<b>" + SMAPIdata.name + "</b><br> Typ: " + SMAPIdata.description + "<br>" + button.outerHTML);
         marker.addEventListener("click", () => {
             // Store the SMAPIdata.id in localStorage
             localStorage.setItem("Id", button.id);

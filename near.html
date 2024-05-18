@@ -34,44 +34,83 @@
     <nav>
         <a href="index.html" id="logga"><img src="/Bilder/logoculturalactivitiesblittleblack.png" alt="Logga"></a>
         <a href="index.html">Start</a>
-        <a href="smaland.html">Aktiviteter</a>
+        <a href="listaaktivitet.html">Aktiviteter</a>
+        <a href="smaland.html">Karta</a>
         <a href="near.html" id="activeNav">Nära dig</a>
         <a href="/random.html">Slumpen</a>
+        <a href="favorites.html">Sparade</a>
     </nav>
     <main>
-        <h1>Aktiviteter nära dig</h1>
-        <div id="map"></div>
-        <h2 id="filterH2">Filtrera resultat:</h2>
-        <div id="filter-system">
-            <div id="reset">Återställ Filter</div>
-            <div>
-                <legend>Typ av aktivitet:</legend>
-                <div id="type">
-                    <div>
-                        <input id="museum" type="checkbox">
-                        <label for="museum">Museum</label>
+        <hgroup>
+            <h1>Aktiviteter i Småland och Öland</h1>
+            <h2>Tryck på en aktivitetet för mer information</h2>
+        </hgroup>
+        <div id="listPush">
+            <div id="filterParent">
+                <h2 id="filterH2">Filtrera resultat:</h2>
+                <div>
+                    <div id="filter-system">
+                        <div>
+                            <legend>Sparade, Rabatter och tillägg</legend>
+                            <div id="savedFilter">
+                                <div>
+                                    <input id="favoriteBox" type="checkbox">
+                                    <label for="favoriteBox">Sparade</label>
+                                </div>
+                            </div>
+                            <div id="discountFilter">
+                                <div>
+                                    <input id="child" type="checkbox">
+                                    <label for="child">Barn Rabatt</label>
+                                </div>
+                                <div>
+                                    <input id="student" type="checkbox">
+                                    <label for="student">Student Rabatt</label>
+                                </div>
+                                <div>
+                                    <input id="senior" type="checkbox">
+                                    <label for="senior">Pensionär Rabatt</label>
+                                </div>
+                            </div>
+                            <div id="otherFilter">
+                                <div>
+                                    <input id="outdoor" type="checkbox">
+                                    <label for="outdoor">Utomhus</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <legend>Typ av aktivitet:</legend>
+                            <div id="type">
+                                <div>
+                                    <input id="museum" type="checkbox">
+                                    <label for="museum">Museum</label>
+                                </div>
+                                <div><input id="slott" type="checkbox">
+                                    <label for="slott">Slott</label>
+                                </div>
+                                <div><input id="kyrka" type="checkbox">
+                                    <label for="kyrka">Kyrka</label>
+                                </div>
+                                <div><input id="fornlamning" type="checkbox">
+                                    <label for="fornlamning">Fornlämning</label>
+                                </div>
+                                <div><input id="atelje" type="checkbox">
+                                    <label for="atelje">Ateljé</label>
+                                </div>
+                                <div><input id="konstgalleri" type="checkbox">
+                                    <label for="konstgalleri">Konstgalleri</label>
+                                </div>
+                                <div><input id="biograf" type="checkbox">
+                                    <label for="biograf">Biograf</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div><input id="slott" type="checkbox">
-                        <label for="slott">Slott</label>
-                    </div>
-                    <div><input id="kyrka" type="checkbox">
-                        <label for="kyrka">Kyrka</label>
-                    </div>
-                    <div><input id="fornlamning" type="checkbox">
-                        <label for="fornlamning">Fornlämning</label>
-                    </div>
-                    <div><input id="atelje" type="checkbox">
-                        <label for="atelje">Ateljé</label>
-                    </div>
-                    <div><input id="konstgalleri" type="checkbox">
-                        <label for="konstgalleri">Konstgalleri</label>
-                    </div>
-                    <div><input id="biograf" type="checkbox">
-                        <label for="biograf">Biograf</label>
-                    </div>
+                    <div id="reset">Återställ Filter</div>
                 </div>
             </div>
-        </div>
+            <div id="map"></div>
     </main>
 </body>
 

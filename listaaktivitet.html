@@ -4,41 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kulturella aktiviteter i Småland | CultActivi</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Kulturella aktiviteter i Småland| CultActivi</title>
+    <link rel="stylesheet" href="lista.css">
     <link rel="icon" href="/Bilder/logoculturalactivities.png">
-    <!--Länkar till API för karta-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="map.js"></script>
+    <script src="lista.js"></script>
 </head>
 
 <body>
-    <label>
-        <input id="checkboxLines" type="checkbox">
-        <div class="toggle">
-            <span class="topLine lines"></span>
-            <span class="middleLine lines"></span>
-            <span class="lowerLine lines"></span>
-        </div>
-
-        <div class="slide">
-            <img id="slidelogo" src="/Bilder/logoculturalactivitiesblittleblack.png" alt="Ikon på loggan med händer och landskapet Småland och Öland tillsammans med texten kulturella aktiviteter cirkelformat">
-            <ul>
-                <li> <a href="/index.html">Start</a></li>
-                <li><a href="/smaland.html">Aktiviteter</a></li>
-                <li><a href="/near.html">Nära dig</a></li>
-                <li><a href="/random.html">Slumpen</a></li>
-            </ul>
-        </div>
-    </label>
     <nav>
         <a href="index.html" id="logga"><img src="/Bilder/logoculturalactivitiesblittleblack.png" alt="Logga"></a>
         <a href="index.html">Start</a>
-        <a href="listaaktivitet.html">Aktiviteter</a>
-        <a href="smaland.html" id="activeNav">Karta</a>
+        <a href="listaaktivitet.html" id="activeNav">Aktiviteter</a>
+        <a href="smaland.html">Karta</a>
         <a href="near.html">Nära dig</a>
-        <a href="/random.html">Slumpen</a>
         <a href="favorites.html">Sparade</a>
     </nav>
     <main>
@@ -270,7 +248,7 @@
                                     </div>
                                     <div><input id="virsaram" type="checkbox">
                                         <label for="virsaram">Virsaram</label>
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
@@ -278,7 +256,9 @@
                     <div id="reset">Återställ Filter</div>
                 </div>
             </div>
-            <div id="mapSma"></div>
+            <div id="results">
+                <!--javascript ska lägga in div med information här-->
+            </div>
         </div>
     </main>
 </body>

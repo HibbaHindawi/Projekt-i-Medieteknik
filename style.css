@@ -15,7 +15,6 @@ main {
 }
 
 h1 {
-    padding: 30px 10px 5px;
     border-radius: 15px;
     margin: 0 auto;
     color: rgb(70, 70, 70);
@@ -140,10 +139,22 @@ nav #activeNav {
 /*------------------------------------------*/
 
 /*----------------- Karta -------------------*/
+hgroup{
+    padding: 25px 0px 10px 0px;
+    color: rgb(70, 70, 70);
+}
+hgroup h1{
+    padding: 0;
+}
+hgroup h2{
+    border-bottom: gray solid 2px;
+    font-size: 18px;
+    margin-top: 5px;
+}
 #map {
     margin: 5px auto 0px;
-    height: 400px;
-    width: 100%;
+    height: 750px;
+    width: 75%;
     color: red;
     text-align: center;
     font-size: 18px;
@@ -153,8 +164,8 @@ nav #activeNav {
 #mapSma {
     margin: 5px auto 0px;
     /*Ändra inte för att hela småland ska kunna visas*/
-    height: 450px;
-    width: 100%;
+    height: 750px;
+    width: 75%;
     border-radius: 10px;
 }
 
@@ -170,6 +181,9 @@ nav #activeNav {
 
 #placeDesc {
     margin-bottom: 20px;
+}
+#placeDesc img{
+    height: 16px;
 }
 
 #placeDesc>div {
@@ -192,10 +206,24 @@ nav #activeNav {
     display: inline;
     margin: 5px 5px 5px 0px;
 }
-
 #placeDesc a {
-    display: block;
+    display: inline;
     margin-top: 10px;
+}
+#placeDesc a:visited{
+    color: #0066cc;
+}
+#placeDesc a:hover{
+    color: #00386f;
+}
+#placeDesc span{
+    font-weight: bold;
+}
+#otherInfo p{
+    margin-bottom: 5px;
+}
+#otherInfo p:last-of-type{
+    margin: 0;
 }
 
 /*------------------------------------------*/
@@ -388,32 +416,45 @@ nav #activeNav {
 
 }
 /*------------Filter Systemet--------------*/
+#listPush{
+    display: flex;
+    flex-direction: row;
+}
+#filterParent{
+    width: 280px;
+}
 #filter-system {
     position: relative;
     margin-top: 5px;
     padding: 20px;
     background-color: rgb(240, 240, 240);
+    margin-right: 10px;
+    height: 630px;
+    overflow: auto;
+    border-radius: 10px;
 }
-
-#filter-system #reset {
+#filter-system label{
+    font-size: 18px;
+}
+#filter-system input{
+    height: 20px;
+}
+#filter-system img{
+    width: 17px;
+}
+#reset {
     cursor: pointer;
-    position: absolute;
-    right: 15px;
-    width: 100px;
-    top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0;
     background-color: rgb(255, 254, 251);
     padding: 5px 10px;
     font-size: 14px;
     text-align: center;
     border: black solid 1px;
     border-radius: 5px;
+    margin-right: 10px;
 }
-#filter-system #reset:hover{
+#reset:hover{
     background-color: rgb(225, 225, 224);
-}
-#filter-system #city{
-    margin-top: 10px;
 }
 #filter-system legend{
     font-size: 18px;
@@ -422,40 +463,9 @@ nav #activeNav {
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
-#filter-system input, #filter-system label {
-    cursor: pointer;
-}
 #filterH2{
     font-size: 20px;
     margin-bottom: 0;
     margin-left: 10px;
 }
-
-#filter-system #popular, #filter-system #type{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    margin-bottom: 5px;
-}
-
-#showMore {
-    background-color: rgb(255, 254, 251);
-    cursor: pointer;
-    max-width: 80px;
-    text-align: center;
-    padding: 5px 10px;
-    font-size: 16px;
-    border: black solid 1px;
-    border-radius: 5px;
-    margin: 0 auto 10px;
-}
-
-#showMore:hover {
-    background-color: rgb(225, 225, 224);
-}
-
-#moreCities {
-    display: none;
-}
-
 /*------------------------------------------*/
