@@ -38,45 +38,53 @@ function getSMAPI() {
 }
 function createList(data) {
     resultElem.innerHTML = "";
-    for (let i = 0; i < data.payload.length; i++) {
-        let SMAPIdata = data.payload[i];
-        let newA = document.createElement("a");
-        newA.href = "information.html";
-        newA.id = SMAPIdata.id;
-        let favoritDiv = document.createElement("div");
-        favoritDiv.classList.add("favorite");
-        let heartIMG = document.createElement("img");
-        let favoritesArray = [];
-        if (typeof localStorage !== "undefined") {
-            // localStorage is supported
-            let storedFavorites = localStorage.getItem("favorites");
-            if (storedFavorites !== null) {
-                favoritesArray = storedFavorites.split(",");
+    if (data.payload.length == 0) {
+        let errorElement = document.createElement("p");
+        errorElement.id = "error";
+        errorElement.innerText = "Du har inte sparat någon aktivitet ännu, spara först några aktiviteter.";
+        resultElem.appendChild(errorElement);
+    }
+    else {
+        for (let i = 0; i < data.payload.length; i++) {
+            let SMAPIdata = data.payload[i];
+            let newA = document.createElement("a");
+            newA.href = "information.html";
+            newA.id = SMAPIdata.id;
+            let favoritDiv = document.createElement("div");
+            favoritDiv.classList.add("favorite");
+            let heartIMG = document.createElement("img");
+            let favoritesArray = [];
+            if (typeof localStorage !== "undefined") {
+                // localStorage is supported
+                let storedFavorites = localStorage.getItem("favorites");
+                if (storedFavorites !== null) {
+                    favoritesArray = storedFavorites.split(",");
+                }
             }
-        }
 
-        if (favoritesArray.length > 0 && favoritesArray.includes(newA.id)) {
-            heartIMG.alt = "Full heart";
-            heartIMG.src = "Bilder/Ikoner/heartFull.png";
+            if (favoritesArray.length > 0 && favoritesArray.includes(newA.id)) {
+                heartIMG.alt = "Full heart";
+                heartIMG.src = "Bilder/Ikoner/heartFull.png";
+            }
+            favoritDiv.appendChild(heartIMG);
+            let id = newA.id;
+            heartIMG.addEventListener("click", function (event) {
+                removeFromFavorite(event, id);
+            });
+            let newDiv = document.createElement("div");
+            newDiv.innerText = SMAPIdata.name + " - " + SMAPIdata.city + " - " + SMAPIdata.description;
+            newA.classList.add("plats");
+            newA.addEventListener("click", () => {
+                // Store the SMAPIdata.id in localStorage
+                localStorage.setItem("Id", newA.id);
+            });
+            newA.appendChild(newDiv);
+            let parentDiv = document.createElement("div");
+            parentDiv.appendChild(newA);
+            parentDiv.appendChild(favoritDiv);
+            parentDiv.classList.add("parentDiv");
+            resultElem.appendChild(parentDiv);
         }
-        favoritDiv.appendChild(heartIMG);
-        let id = newA.id;
-        heartIMG.addEventListener("click", function (event) {
-            removeFromFavorite(event, id);
-        });
-        let newDiv = document.createElement("div");
-        newDiv.innerText = SMAPIdata.name + " - " + SMAPIdata.city + " - " + SMAPIdata.description;
-        newA.classList.add("plats");
-        newA.addEventListener("click", () => {
-            // Store the SMAPIdata.id in localStorage
-            localStorage.setItem("Id", newA.id);
-        });
-        newA.appendChild(newDiv);
-        let parentDiv = document.createElement("div");
-        parentDiv.appendChild(newA);
-        parentDiv.appendChild(favoritDiv);
-        parentDiv.classList.add("parentDiv");
-        resultElem.appendChild(parentDiv);
     }
 }
 
@@ -87,7 +95,7 @@ function removeFromFavorite(event, id) {
         // localStorage is supported
         let storedFavorites = localStorage.getItem("favorites");
         if (storedFavorites !== null) {
-            favoritesArray = storedFavorites.split(",");
+            favoritesArray = storedFavorites;
         }
     }
 
