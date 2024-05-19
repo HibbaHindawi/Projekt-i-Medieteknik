@@ -48,7 +48,7 @@ function init() {
     initMap();
     resetFilter();
     filterResults();
-    
+
     let filter = document.querySelectorAll("#filter-system input");
     for (let i = 0; i < filter.length; i++) {
         filter[i].addEventListener("change", filterResults);
@@ -58,7 +58,7 @@ function init() {
 window.addEventListener("load", init);
 
 function initMap() {
-    myMap = L.map("map").locate({setView: true, maxZoom: 13}); //Ändra koordinater för att byta det som visas på kartan, sista värdet är zoom värdet, minska för att zooma ut och tvärtom
+    myMap = L.map("map").locate({setView: true, maxZoom: 13});
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

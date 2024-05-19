@@ -72,13 +72,47 @@ function createList(data) {
                 removeFromFavorite(event, id);
             });
             let newDiv = document.createElement("div");
-            newDiv.innerText = SMAPIdata.name + " - " + SMAPIdata.city + " - " + SMAPIdata.description;
+            newDiv.innerText = SMAPIdata.name + " - " + SMAPIdata.city;
+            newDiv.classList.add("title");
             newA.classList.add("plats");
             newA.addEventListener("click", () => {
                 // Store the SMAPIdata.id in localStorage
                 localStorage.setItem("Id", newA.id);
             });
             newA.appendChild(newDiv);
+            let infoElem = document.createElement("div");
+            infoElem.classList.add("infoList");
+            let outdoors;
+            let student;
+            let child;
+            let senior;
+            if (SMAPIdata.outdoors == "Y") {
+                outdoors = "<img src='Bilder/Ikoner/checkmark.png' alt='checkmark'>";
+            }
+            else {
+                outdoors = "<img src='Bilder/Ikoner/cross.png' alt='cross'>";
+            }
+            if (SMAPIdata.student_discount == "Y") {
+                student = "<img src='Bilder/Ikoner/checkmark.png' alt='checkmark'>";
+            }
+            else {
+                student = "<img src='Bilder/Ikoner/cross.png' alt='cross'>";
+            }
+            if (SMAPIdata.child_discount == "Y") {
+                child = "<img src='Bilder/Ikoner/checkmark.png' alt='checkmark'>";
+            }
+            else {
+                child = "<img src='Bilder/Ikoner/cross.png' alt='cross'>";
+            }
+            if (SMAPIdata.senior_discount == "Y") {
+                senior = "<img src='Bilder/Ikoner/checkmark.png' alt='checkmark'>";
+            }
+            else {
+                senior = "<img src='Bilder/Ikoner/cross.png' alt='cross'>";
+            }
+            infoElem.innerHTML = "<p><u>" + SMAPIdata.description + "</u></p><p><span>Utomhus:</span> " + outdoors + " | <span>Barn Rabatt:</span> " + child + " | <span>Student Rabatt:</span> " + student + " | <span>Pensionär Rabatt:</span> " + senior + "</p>";
+            newA.appendChild(infoElem);
+
             let parentDiv = document.createElement("div");
             parentDiv.appendChild(newA);
             parentDiv.appendChild(favoritDiv);

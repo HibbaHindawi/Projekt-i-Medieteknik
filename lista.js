@@ -156,10 +156,10 @@ function createList(data) {
                 heartIMG.src = "Bilder/Ikoner/heartEmpty.png";
             }
             let id = newA.id;
+            favoritDiv.appendChild(heartIMG);
             heartIMG.addEventListener("click", function (event) {
                 addToFavorite(event, id);
             });
-            favoritDiv.appendChild(heartIMG);
             let newDiv = document.createElement("div");
             newDiv.innerText = SMAPIdata.name + " - " + SMAPIdata.city;
             newDiv.classList.add("title");
@@ -213,27 +213,20 @@ function createList(data) {
 
 function addToFavorite(event, id) {
     let clickedIMG = event.target;
-    let favoritesArray = [];
-    if (typeof localStorage !== "undefined") {
-        // localStorage is supported
-        let storedFavorites = localStorage.getItem("favorites");
-        if (storedFavorites !== null) {
-            favoritesArray = storedFavorites.split(",");
-        }
+    let favoritesArray = localStorage.getItem("favorites");
+  
+    if (favoritesArray != null && favoritesArray.includes(id)) {
+      clickedIMG.src = "Bilder/Ikoner/heartEmpty.png";
+      let filteredNumbers = favoritesArray.split(",").filter(number => number !== id);
+      localStorage.setItem("favorites", filteredNumbers.join(","));
+    } else {
+      if (favoritesArray) {
+        favoritesArray += ",";
+      } else {
+        favoritesArray = "";
+      }
+      favoritesArray += id;
+      clickedIMG.src = "Bilder/Ikoner/heartFull.png";
+      localStorage.setItem("favorites", favoritesArray);
     }
-
-    if (favoritesArray.length > 0 && favoritesArray.includes(id)) {
-        clickedIMG.src = "Bilder/Ikoner/heartEmpty.png";
-        let filteredNumbers = favoritesArray
-            .split(",") // Convert favoritesArray string to an array
-            .filter(number => number !== id);
-        localStorage.setItem("favorites", filteredNumbers.join(",")); // Convert filteredNumbers array back to a string before storing in localStorage
-    }
-    else {
-        favoritesArray = ""; // Initialize favoritesArray as an empty string if it is null
-        favoritesArray += (favoritesArray.length === 0 ? "" : ",") + id; // Append the new id to favoritesArray
-        clickedIMG.src = "Bilder/Ikoner/heartFull.png";
-        localStorage.setItem("favorites", favoritesArray);
-    }
-
-}
+  }

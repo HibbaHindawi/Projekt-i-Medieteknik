@@ -26,21 +26,20 @@ h2 {
     color: rgb(50, 50, 50);
 }
 
-h3 {}
-
 /*------------ Stora loggan och textfältet ------------*/
 .info {
     font-size: 18px;
-    padding: 20px;
+    padding: 10px;
     border-radius: 20px;
+    margin-top: 20px;
     color: rgb(55, 55, 55);
-    box-shadow: 2px 2px 1px;
+    border: rgb(55, 55, 55) solid 1px;
 }
 
 #logo {
     display: block;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 20px;
 }
 
 /*------------ Navigerings meny ------------*/
@@ -86,25 +85,24 @@ nav #activeNav {
     background-color: white;
     color: black;
 }
-.slide {
-    display: none;
-}
-
-#checkboxLines {
-    display: none;
-}
 /*------------ Knappar på startsidan ------------*/
+#startButtons #startNear{
+    display: none;
+}
 #startButtons {
     text-align: center;
     margin-bottom: 20px;
+}
+
+#startButtons div {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-bottom: 5px;
 }
 
-#startH2 {
+#startButtons h2 {
     margin-bottom: 5px;
-    text-align: center;
 }
 
 #startButtons a {
@@ -281,140 +279,6 @@ hgroup h2{
 
 /*------------------------------------------*/
 
-/*----------------- Media queries -------------------*/
-@media screen and (max-width:735px) {
-    body {}
-
-    #map,
-    #mapSma,
-    #mapInfo {
-        z-index: 0;
-    }
-
-    nav {
-        display: none;
-    }
-
-    #logo {
-        width: 200px;
-    }
-
-    .info {
-        max-width: 100%;
-        margin: auto;
-        border: none;
-    }
-
-    #slidelogo {
-        padding: 66px;
-        background-color: white;
-        border: solid 1px;
-        padding: 65px;
-
-    }
-
-    .slide {
-        height: 100%;
-        width: 200px;
-        position: absolute;
-        display: block;
-        background-color: rgb(255, 65, 65);
-        transition: 0.5s ease;
-        transform: translateX(-300px);
-        border-radius: 10px;
-        box-shadow: 2px 2px 5px rgb(106, 106, 106);
-        z-index: 1;
-    }
-
-    ul li {
-        list-style: none;
-    }
-
-    ul li a {
-        color: white;
-        font-weight: 500;
-        padding: 20px;
-        display: block;
-        text-transform: capitalize;
-        text-decoration: none;
-        transition: 0.2s ease-out;
-        font-size: 20px;
-    }
-
-    ul li a:hover {
-        color: black;
-        background-color: white;
-        border-radius: 5px;
-        padding: 40px;
-    }
-
-    #checkboxLines {
-        display: none;
-        visibility: hidden;
-        -webkit-appearance: none;
-    }
-
-    .toggle {
-        position: absolute;
-        height: 30px;
-        width: 30px;
-        top: 20px;
-        left: 15px;
-        z-index: 2;
-        border-radius: 2px;
-        cursor: pointer;
-    }
-
-    .toggle .lines {
-        position: absolute;
-        height: 2px;
-        width: 20px;
-        background-color: black;
-        border-radius: 50px;
-        transition: 0.3s ease;
-    }
-
-    .toggle .topLine {
-        top: 30%;
-        left: 40%;
-        transform: translate(-50%, -50%);
-    }
-
-    .toggle .middleLine {
-        top: 60%;
-        left: 40%;
-        transform: translate(-50%, -50%);
-    }
-
-    .toggle .lowerLine {
-        top: 90%;
-        left: 50%;
-        transform: translate(-65%, -50%);
-    }
-
-    input:checked~.toggle .topLine {
-        left: 2px;
-        top: 14px;
-        width: 25px;
-        transform: rotate(45deg);
-    }
-
-    input:checked~.toggle .middleLine {
-        left: 2px;
-        top: 14px;
-        width: 25px;
-        transform: rotate(-45deg);
-    }
-
-    input:checked~.toggle .lowerLine {
-        opacity: 0;
-    }
-
-    input:checked~.slide {
-        transform: translateX(0);
-    }
-
-}
 /*------------Filter Systemet--------------*/
 #listPush{
     display: flex;

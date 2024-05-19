@@ -1,0 +1,225 @@
+html, body {
+    height: 100%;
+  }
+#toggleNav .slide {
+    display: none;
+}
+
+#toggleNav  #checkboxLines {
+    display: none;
+}
+@media screen and (max-width: 1000px) {
+    #results{
+        width: 100%;
+        height: 65vh;
+    }
+    #listPush{
+        flex-direction: column;
+        align-items: center;
+    }
+    #filterParent{
+        width: 100%;
+        order: 2;
+    }
+    #filterParent #filter-system{
+        height: 180px;
+    }
+    #map, #mapSma{
+        width: 100%;
+        height: 600px;
+    }
+}
+@media screen and (max-width:815px) {
+    #results_favorites{
+        height: 82vh;
+    }
+    #startButtons #startNear{
+        display: flex;
+    }
+    #map,
+    #mapSma,
+    #mapInfo {
+        z-index: 0;
+    }
+
+    nav {
+        display: none;
+    }
+
+    #logo {
+        width: 200px;
+    }
+
+    .info {
+        max-width: 100%;
+    }
+
+    #toggleNav #slidelogo {
+        padding: 66px;
+        background-color: white;
+        border: solid 1px;
+        padding: 65px;
+
+    }
+
+    #toggleNav .slide {
+        height: 100%;
+        width: 200px;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        position: fixed;
+        display: block;
+        background-color: rgb(255, 65, 65);
+        transition: 0.5s ease;
+        transform: translateX(-300px);
+        box-shadow: 2px 2px 5px rgb(106, 106, 106);
+        z-index: 1;
+    }
+    #toggleNav ul{
+        padding: 0;
+    }
+    #toggleNav ul li {
+        list-style: none;
+    }
+
+    #toggleNav ul li a {
+        color: white;
+        font-weight: 500;
+        padding: 20px;
+        display: block;
+        text-transform: capitalize;
+        text-decoration: none;
+        transition: 0.2s ease-out;
+        font-size: 20px;
+    }
+
+    #toggleNav ul li a:hover {
+        color: black;
+        background-color: white;
+        border-radius: 5px;
+        padding: 40px;
+    }
+
+    #toggleNav #checkboxLines {
+        display: none;
+        visibility: hidden;
+        -webkit-appearance: none;
+    }
+
+    #toggleNav .toggle {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        top: 20px;
+        left: 15px;
+        z-index: 2;
+        border-radius: 2px;
+        cursor: pointer;
+    }
+
+    #toggleNav .toggle .lines {
+        position: absolute;
+        height: 2px;
+        width: 20px;
+        background-color: black;
+        border-radius: 50px;
+        transition: 0.3s ease;
+    }
+
+    #toggleNav .toggle .topLine {
+        top: 30%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+    }
+
+    #toggleNav .toggle .middleLine {
+        top: 60%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+    }
+
+    #toggleNav .toggle .lowerLine {
+        top: 90%;
+        left: 50%;
+        transform: translate(-65%, -50%);
+    }
+
+    #toggleNav input:checked~.toggle .topLine {
+        left: 2px;
+        top: 14px;
+        width: 25px;
+        transform: rotate(45deg);
+    }
+
+    #toggleNav input:checked~.toggle .middleLine {
+        left: 2px;
+        top: 14px;
+        width: 25px;
+        transform: rotate(-45deg);
+    }
+
+    #toggleNav input:checked~.toggle .lowerLine {
+        opacity: 0;
+    }
+
+    #toggleNav input:checked~.slide {
+        transform: translateX(0);
+    }
+    #startButtons{
+        margin-bottom: 0;
+    }
+    #logo{
+        padding-top: 40px;
+    }
+    main{
+        max-width: 85%;
+    }
+    .infoList{
+        font-size: 14px;
+    }
+    .infoList img{
+        width: 14px;
+        height: 14px;
+    }
+    .favorite img{
+        height: 22px;
+    }
+    .title{
+        font-size: 18px;
+    }
+}
+@media screen and (max-width:650px) {
+    #startButtons h2{
+        font-size: 20px;
+    }
+    #startButtons a{
+        font-size: 14px;
+        padding: 5px 8px;
+        margin: 0 2px;
+    }
+    hgroup{
+        text-align: center;
+    }
+    hgroup h1{
+        font-size: 26px;
+    }
+    .info h3{
+        font-size: 18px;
+    }
+    .info p{
+        font-size: 16px;
+    }
+    #map, #mapSma{
+        width: 100%;
+        height: 500px;
+    }
+}
+@media screen and (max-width:400px){
+    main{
+        max-width: 90%;
+    }
+    hgroup h2{
+        font-size: 16px;
+    }
+}

@@ -52,12 +52,12 @@ function init() {
     studentElem = document.querySelector("#student");
     seniorElem = document.querySelector("#senior");
     outdoorElem = document.querySelector("#outdoor");
-
     if (document.querySelector("#mapSma")) {
-        initMap("mapSma");
+        initMap();
         resetFilter();
         filterResults();
     }
+    window.addEventListener("resize", changeMap);
     let filter = document.querySelectorAll("#filter-system input");
     for (let i = 0; i < filter.length; i++) {
         filter[i].addEventListener("change", filterResults);
@@ -66,17 +66,52 @@ function init() {
 }
 window.addEventListener("load", init);
 
-function initMap(id) {
-    myMap = L.map(id, {
+function initMap() {
+    let zoom;
+    if(window.innerWidth <= 450){
+        zoom = 7;
+    }
+    else if(window.innerWidth <= 600){
+        zoom = 7.4;
+    }
+    else if(window.innerWidth <= 800){
+        zoom = 7.6;
+    }
+    else if (window.innerWidth > 800 && window.innerWidth <= 1600) {
+        zoom = 7.7;
+    }
+    else{
+        zoom= 8;
+    }
+    myMap = L.map("mapSma", {
         zoomDelta: 1,
         zoomSnap: 0.35
     }); //Ändra koordinater för att byta det som visas på kartan, sista värdet är zoom värdet, minska för att zooma ut och tvärtom
-    myMap.setView([57.32, 15.5], 8);
+    myMap.setView([57.32, 15.25], zoom);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 20,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(myMap);
+}
+function changeMap(){
+    let zoom;
+    if(window.innerWidth <= 450){
+        zoom = 7;
+    }
+    else if(window.innerWidth <= 600){
+        zoom = 7.4;
+    }
+    else if(window.innerWidth <= 800){
+        zoom = 7.6;
+    }
+    else if (window.innerWidth > 800 && window.innerWidth <= 1600) {
+        zoom = 7.7;
+    }
+    else{
+        zoom= 8;
+    }
+    myMap.setView([57.32, 15.5], zoom);
 }
 
 function filterResults() {

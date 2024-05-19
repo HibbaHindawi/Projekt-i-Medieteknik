@@ -5,16 +5,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slumpen | CultActiviti</title>
+    <title>Slumpmässig Aktivitet | CultActiviti</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="/Bilder/logoculturalactivities.png">
     <script src="/generate.js"></script>
     <script src="index.js"></script>
+    <link rel="stylesheet" href="mediaquery.css">
+
 </head>
 
 <body>
 
-    <label>
+    <label id="toggleNav">
         <input id="checkboxLines" type="checkbox">
         <div class="toggle">
             <span class="topLine lines"></span>
@@ -23,32 +25,30 @@
         </div>
 
         <div class="slide">
-            <img id="slidelogo" src="/Bilder/logoculturalactivitiesblittleblack.png" alt="">
+            <img id="slidelogo" src="/Bilder/logoculturalactivitiesblittleblack.png" alt="Cultactivi logga">
             <ul>
                 <li> <a href="/index.html">Start</a></li>
-                <li><a href="/smaland.html">Aktiviteter</a></li>
+                <li><a href="/listaaktivitet.html">Aktiviteter</a></li>
+                <li><a href="/smaland.html">Karta</a></li>
                 <li><a href="/near.html">Nära dig</a></li>
-                <li><a href="/random.html">Slumpen</a></li>
+                <li><a href="/random.html">Slumpässig</a></li>
+                <li><a href="/favorites.html">Sparade</a></li>
             </ul>
         </div>
     </label>
     <nav>
         <a href="index.html" id="logga"><img src="/Bilder/logoculturalactivitiesblittleblack.png" alt="Logga"></a>
-        <a href="index.html" id="activeNav">Start</a>
-        <a href="smaland.html">Aktiviteter</a>
-        <a href="near.html">Nära dig</a>
-        <a href="random.html">Slumpen</a>
-        <div id="dropbtn">Kategorier</div>
+        <a href="index.html">Start</a>
+        <a href="listaaktivitet.html">Aktiviteter</a>
+        <a href="smaland.html">Karta</a>
+        <a href="random.html" id="activeNav">Slumpässig</a>
+        <a href="favorites.html">Sparade</a>
     </nav>
-    <div id="dropdown">
-        <a href="Kategorier_HTML/slott.html">Slott <img src="/Bilder/castleicon.png" alt="Slott ikon för kategorier"></a><a href="Kategorier_HTML/biograf.html">Biografer<img src="/Bilder/cinemaicon.png" alt="Klaffbräda ikon för kategorier"></a><a href="Kategorier_HTML/museum.html">Museum <img src="/Bilder/museumicon.png" alt="Byggnad ikon för kategorier"></a>
-    </div>
-    <header>
-        <h1 id="random">Slumpen</h1>
-    </header>
-
     <main>
-        <p id="randomInfo">Låt slumpgeneratorn ge dig en kulturell aktivitet att utforska</p>
+        <hgroup>
+            <h1>Slumpen</h1>
+            <h2>Tryck på knappen för en slumpmässig aktivitet</h2>
+        </hgroup>
         <button type="button" id="generateButton">Slumpgenerator</button>
         <div id="activiti"></div>
     </main>
