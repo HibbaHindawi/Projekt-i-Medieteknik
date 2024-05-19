@@ -99,8 +99,15 @@ function createDesc(data) {
         favoritDiv.classList.add("favorite");
         let heartIMG = document.createElement("img");
         heartIMG.style.cursor = "pointer";
-        let favoritesArray = localStorage.getItem("favorites");
-        if (favoritesArray.includes(specificData.id)) {
+        let favoritesArray = [];
+        if (typeof localStorage !== "undefined") {
+            // localStorage is supported
+            let storedFavorites = localStorage.getItem("favorites");
+            if (storedFavorites !== null) {
+                favoritesArray = storedFavorites.split(",");
+            }
+        }
+        if (favoritesArray.length > 0 && favoritesArray.includes(specificData.id)) {
             heartIMG.alt = "Full heart";
             heartIMG.src = "Bilder/Ikoner/heartFull.png";
         }
@@ -139,31 +146,31 @@ function createDesc(data) {
         const ratingDiv = document.createElement("div");
         ratingDiv.classList.add("PushIn");
         const ratingParagraph = document.createElement("p");
-        if(rating == 1){
+        if (rating == 1) {
             ratingParagraph.innerHTML = "<span>Betyg:</span> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> | "
         }
-        else if(rating > 1 && rating <= 1.5){
+        else if (rating > 1 && rating <= 1.5) {
             ratingParagraph.innerHTML = "<span>Betyg:</span> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starHalf.png' alt='Half Full Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> | ";
         }
-        else if(rating > 1.5 && rating <= 2){
+        else if (rating > 1.5 && rating <= 2) {
             ratingParagraph.innerHTML = "<span>Betyg:</span> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> | ";
         }
-        else if(rating > 2 && rating <= 2.5){
+        else if (rating > 2 && rating <= 2.5) {
             ratingParagraph.innerHTML = "<span>Betyg:</span> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starHalf.png' alt='Half Full Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> | ";
         }
-        else if(rating > 2.5 && rating <= 3){
+        else if (rating > 2.5 && rating <= 3) {
             ratingParagraph.innerHTML = "<span>Betyg:</span> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> | ";
         }
-        else if(rating > 3 && rating <= 3.5){
+        else if (rating > 3 && rating <= 3.5) {
             ratingParagraph.innerHTML = "<span>Betyg:</span> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starHalf.png' alt='Half Full Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> | ";
         }
-        else if(rating > 3.5 && rating <= 4){
+        else if (rating > 3.5 && rating <= 4) {
             ratingParagraph.innerHTML = "<span>Betyg:</span> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> | ";
         }
-        else if(rating > 4 && rating <= 4.5){
+        else if (rating > 4 && rating <= 4.5) {
             ratingParagraph.innerHTML = "<span>Betyg:</span> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starHalf.png' alt='Half Full Star'> | ";
         }
-        else if(rating > 4.5 && rating <= 5){
+        else if (rating > 4.5 && rating <= 5) {
             ratingParagraph.innerHTML = "<span>Betyg:</span> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> | ";
         }
         ratingDiv.appendChild(ratingParagraph);
@@ -175,7 +182,7 @@ function createDesc(data) {
         divContent.appendChild(ratingDiv);
 
         const abstractParagraph = document.createElement("p");
-        if(specificData.abstract != ""){
+        if (specificData.abstract != "") {
             abstractParagraph.innerHTML = "<span>Beskrivning:</span> " + specificData.abstract;
         }
         divContent.appendChild(abstractParagraph);

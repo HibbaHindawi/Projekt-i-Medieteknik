@@ -3,7 +3,7 @@ let placeInfoDescElem;
 
 let resultElem;
 
-function init(){
+function init() {
     resultElem = document.querySelector("#results_favorites");
     filterResults()
 }
@@ -13,7 +13,7 @@ function filterResults() {
     let savedActivities = localStorage.getItem("favorites").split(",");
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&order_by=city&ids=";//Base URL
     //for(let i= 0; i < savedActivities.length; i++){
-        url+=savedActivities;
+    url += savedActivities;
     //}
     getSMAPI();
 }
@@ -38,8 +38,16 @@ function createList(data) {
         let favoritDiv = document.createElement("div");
         favoritDiv.classList.add("favorite");
         let heartIMG = document.createElement("img");
-        let favoritesArray = localStorage.getItem("favorites");
-        if (favoritesArray.includes(newA.id)) {
+        let favoritesArray = [];
+        if (typeof localStorage !== "undefined") {
+            // localStorage is supported
+            let storedFavorites = localStorage.getItem("favorites");
+            if (storedFavorites !== null) {
+                favoritesArray = storedFavorites.split(",");
+            }
+        }
+
+        if (favoritesArray.length > 0 && favoritesArray.includes(newA.id)) {
             heartIMG.alt = "Full heart";
             heartIMG.src = "Bilder/Ikoner/heartFull.png";
         }
@@ -64,7 +72,7 @@ function createList(data) {
     }
 }
 
-function removeFromFavorite(event, id){
+function removeFromFavorite(event, id) {
     let clickedIMG = event.target;
     let favoritesArray = localStorage.getItem("favorites");
     if (favoritesArray != null && favoritesArray.includes(id)) {

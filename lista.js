@@ -67,12 +67,17 @@ function filterResults() {
     if (typeCounter == 7) {
         typeURL += "museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"
     }
-    let favoritesArray = localStorage.getItem("favorites").split(",");
-    if (favoritesArray != null && savedElem.checked == true) {
-        url += "&ids=" + favoritesArray;
+    let favoritesArray = [];
+    if (typeof localStorage !== "undefined") {
+        // localStorage is supported
+        let storedFavorites = localStorage.getItem("favorites");
+        if (storedFavorites !== null) {
+            favoritesArray = storedFavorites.split(",");
+        }
     }
-    else{
-        favoritesArray = "";
+
+    if (favoritesArray.length > 0 && savedElem.checked) {
+        url += "&ids=" + favoritesArray;
     }
     if (childElem.checked == true) {
         url += "&child_discount=Y";
