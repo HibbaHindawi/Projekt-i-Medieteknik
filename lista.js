@@ -138,8 +138,16 @@ function createList(data) {
             let favoritDiv = document.createElement("div");
             favoritDiv.classList.add("favorite");
             let heartIMG = document.createElement("img");
-            let favoritesArray = localStorage.getItem("favorites");
-            if (favoritesArray.includes(newA.id)) {
+            let favoritesArray = [];
+            if (typeof localStorage !== "undefined") {
+                // localStorage is supported
+                let storedFavorites = localStorage.getItem("favorites");
+                if (storedFavorites !== null) {
+                    favoritesArray = storedFavorites.split(",");
+                }
+            }
+
+            if (favoritesArray.length > 0 && favoritesArray.includes(newA.id)) {
                 heartIMG.alt = "Full heart";
                 heartIMG.src = "Bilder/Ikoner/heartFull.png";
             }

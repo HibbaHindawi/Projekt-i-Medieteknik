@@ -10,12 +10,20 @@ function init() {
 window.addEventListener("load", init);
 
 function filterResults() {
-    let savedActivities = localStorage.getItem("favorites").split(",");
-    url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&order_by=city&ids=";//Base URL
-    //for(let i= 0; i < savedActivities.length; i++){
-    url += savedActivities;
-    //}
-    getSMAPI();
+    let savedActivities = [];
+    if (typeof localStorage !== "undefined") {
+        // localStorage is supported
+        let storedFavorites = localStorage.getItem("favorites");
+        if (storedFavorites !== null) {
+            savedActivities = storedFavorites.split(",");
+        }
+    }
+
+    if (savedActivities.length > 0) {
+        url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&order_by=city&ids=";//Base URL
+        url += savedActivities;
+        getSMAPI();
+    }
 }
 function getSMAPI() {
     fetch(url)
