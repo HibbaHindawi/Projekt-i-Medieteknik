@@ -86,6 +86,9 @@ function filterResults() {
     if (favoritesArray != null && savedElem.checked == true) {
         url += "&ids=" + favoritesArray;
     }
+    else{
+        favoritesArray = "";
+    }
     if (childElem.checked == true) {
         url += "&child_discount=Y";
     }
