@@ -74,8 +74,16 @@ function createList(data) {
 
 function removeFromFavorite(event, id) {
     let clickedIMG = event.target;
-    let favoritesArray = localStorage.getItem("favorites");
-    if (favoritesArray != null && favoritesArray.includes(id)) {
+    let favoritesArray = [];
+    if (typeof localStorage !== "undefined") {
+        // localStorage is supported
+        let storedFavorites = localStorage.getItem("favorites");
+        if (storedFavorites !== null) {
+            favoritesArray = storedFavorites.split(",");
+        }
+    }
+
+    if (favoritesArray.length > 0 && favoritesArray.includes(id)) {
         clickedIMG.src = "Bilder/Ikoner/heartEmpty.png";
         let filteredNumbers = favoritesArray
             .split(",") // Convert favoritesArray string to an array

@@ -167,31 +167,31 @@ function createList(data) {
             let student;
             let child;
             let senior;
-            if(SMAPIdata.outdoors == "Y"){
+            if (SMAPIdata.outdoors == "Y") {
                 outdoors = "<img src='Bilder/Ikoner/checkmark.png' alt='checkmark'>";
             }
-            else{
+            else {
                 outdoors = "<img src='Bilder/Ikoner/cross.png' alt='cross'>";
             }
-            if(SMAPIdata.student_discount == "Y"){
+            if (SMAPIdata.student_discount == "Y") {
                 student = "<img src='Bilder/Ikoner/checkmark.png' alt='checkmark'>";
             }
-            else{
+            else {
                 student = "<img src='Bilder/Ikoner/cross.png' alt='cross'>";
             }
-            if(SMAPIdata.child_discount == "Y"){
+            if (SMAPIdata.child_discount == "Y") {
                 child = "<img src='Bilder/Ikoner/checkmark.png' alt='checkmark'>";
             }
-            else{
+            else {
                 child = "<img src='Bilder/Ikoner/cross.png' alt='cross'>";
             }
-            if(SMAPIdata.senior_discount == "Y"){
+            if (SMAPIdata.senior_discount == "Y") {
                 senior = "<img src='Bilder/Ikoner/checkmark.png' alt='checkmark'>";
             }
-            else{
+            else {
                 senior = "<img src='Bilder/Ikoner/cross.png' alt='cross'>";
             }
-            infoElem.innerHTML = "<p><u>" +SMAPIdata.description + "</u></p><p><span>Utomhus:</span> " + outdoors + " | <span>Barn Rabatt:</span> "+ child + " | <span>Student Rabatt:</span> " + student + " | <span>Pensionär Rabatt:</span> " + senior + "</p>";
+            infoElem.innerHTML = "<p><u>" + SMAPIdata.description + "</u></p><p><span>Utomhus:</span> " + outdoors + " | <span>Barn Rabatt:</span> " + child + " | <span>Student Rabatt:</span> " + student + " | <span>Pensionär Rabatt:</span> " + senior + "</p>";
             newA.appendChild(infoElem);
 
             let parentDiv = document.createElement("div");
@@ -205,9 +205,16 @@ function createList(data) {
 
 function addToFavorite(event, id) {
     let clickedIMG = event.target;
-    let favoritesArray = localStorage.getItem("favorites");
+    let favoritesArray = [];
+    if (typeof localStorage !== "undefined") {
+        // localStorage is supported
+        let storedFavorites = localStorage.getItem("favorites");
+        if (storedFavorites !== null) {
+            favoritesArray = storedFavorites.split(",");
+        }
+    }
 
-    if (favoritesArray != null && favoritesArray.includes(id)) {
+    if (favoritesArray.length > 0 && favoritesArray.includes(id)) {
         clickedIMG.src = "Bilder/Ikoner/heartEmpty.png";
         let filteredNumbers = favoritesArray
             .split(",") // Convert favoritesArray string to an array
@@ -215,9 +222,7 @@ function addToFavorite(event, id) {
         localStorage.setItem("favorites", filteredNumbers.join(",")); // Convert filteredNumbers array back to a string before storing in localStorage
     }
     else {
-        if (favoritesArray == null) {
-            favoritesArray = ""; // Initialize favoritesArray as an empty string if it is null
-        }
+        favoritesArray = ""; // Initialize favoritesArray as an empty string if it is null
         favoritesArray += (favoritesArray.length === 0 ? "" : ",") + id; // Append the new id to favoritesArray
         clickedIMG.src = "Bilder/Ikoner/heartFull.png";
         localStorage.setItem("favorites", favoritesArray);
