@@ -29,11 +29,11 @@ h2 {
 /*------------ Stora loggan och textfältet ------------*/
 .info {
     font-size: 18px;
-    padding: 10px;
+    padding: 20px;
     border-radius: 20px;
-    margin-top: 20px;
     color: rgb(55, 55, 55);
-    border: rgb(55, 55, 55) solid 1px;
+    box-shadow: 2px 2px 1px;
+    border: solid 5px rgba(183, 183, 183, 0.3);
 }
 
 #logo {
