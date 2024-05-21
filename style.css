@@ -104,7 +104,7 @@ nav #activeNav {
 
 #startButtons h2 {
     margin-bottom: 5px;
-}
+} 
 
 #startButtons a {
     margin: 0 8px;
@@ -237,7 +237,6 @@ hgroup h2{
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
     border-radius: 10px;
 }
 
@@ -265,6 +264,23 @@ hgroup h2{
 #generateButton:hover,#generateButton:active {
     background-color: white;
     color: black;
+}
+
+#generateButton img{
+    margin: 10px;
+    width: 30px;
+}
+
+#randomH1 img{
+    width: 50px;
+}
+
+#olandIcon{
+    width: 20px;
+}
+
+#savedIcon img {
+    width: 50px;
 }
 
 #randomInfo {

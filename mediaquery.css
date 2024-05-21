@@ -35,6 +35,7 @@ html, body {
     }
     #startButtons #startNear{
         display: flex;
+        width: 100%;
     }
     #map,
     #mapSma,
@@ -193,10 +194,18 @@ html, body {
     #startButtons h2{
         font-size: 20px;
     }
+    #startButtons, #startButtons div:first-of-type{
+        display: flex;
+        flex-direction: column;
+    }
+   
     #startButtons a{
-        font-size: 14px;
+        font-size: 20px;
         padding: 25px 8px;
-        margin: 0 2px;
+        margin: 5px;
+    }
+    div #startNear{
+        margin-top: 0px;
     }
     hgroup{
         text-align: center;
