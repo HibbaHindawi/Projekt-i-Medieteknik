@@ -8,6 +8,8 @@
     <title>Slumpmässig Aktivitet | CultActiviti</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="/Bilder/logoculturalactivities.png">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="/generate.js"></script>
     <script src="index.js"></script>
     <link rel="stylesheet" href="mediaquery.css">
@@ -52,6 +54,16 @@
         <button type="button" id="generateButton">Slumpgenerator</button>
         <div id="activiti"></div>
     </main>
+
+    <div id="showActivity"></div>
+
+    <hgroup>
+        <h1 id="h1Info"></h1>
+    </hgroup>
+    <div id="mapInfo"></div>
+    <div id="placeDesc">
+        <!--javascript ska lägga in div med information här-->
+    </div>
 
 </body>
 
