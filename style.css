@@ -132,7 +132,7 @@ nav #activeNav {
 
 #startButtons a img {
     height: 35px;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /*------------------------------------------*/
@@ -253,7 +253,7 @@ hgroup h2{
     font-size: 22px;
     display: flex;
     align-items: center;
-    height: 50px;
+    height: 80px;
     cursor: pointer;
     position: fixed;
     top: 50%;
