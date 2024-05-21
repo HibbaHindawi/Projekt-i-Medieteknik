@@ -1,6 +1,6 @@
 // Globala variabler och konstanter
 const activities = ["Museum", "Slott", "Kyrka", "Fornlämning", "Ateljé", "Biograf"];
-let apiUrl = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall";
+let apiUrl = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&descriptions=museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning";
 let generateButton; // För knappen
 let activity; // För aktiviteten
 let randomActivity;
