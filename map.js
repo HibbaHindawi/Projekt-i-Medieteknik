@@ -129,7 +129,7 @@ function filterResults() {
             cityCounter++
         }
     }
-    if (cityCounter == 54) {
+    if (cityCounter == citiesElem.length) {
         cityURL = "";
     }
 
