@@ -40,6 +40,7 @@ h2 {
     display: block;
     margin: 0 auto;
     padding-top: 20px;
+    margin-bottom: 5px;
 }
 
 /*------------ Navigerings meny ------------*/
@@ -99,7 +100,6 @@ nav #activeNav {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 5px;
 }
 
 #startButtons h2 {
@@ -110,10 +110,10 @@ nav #activeNav {
     margin: 0 8px;
     background-color: rgb(255, 65, 65);
     text-decoration: none;
-    padding: 25px 10px;
+    padding: 10px;
     color: white;
     border-radius: 10px;
-    font-size: 22px;
+    font-size: 18px;
     border: rgb(255, 255, 255) solid 1px;
     display: flex;
     align-items: center;
@@ -269,18 +269,6 @@ hgroup h2{
 #generateButton img{
     margin: 10px;
     width: 30px;
-}
-
-#randomH1 img{
-    width: 50px;
-}
-
-#olandIcon{
-    width: 20px;
-}
-
-#savedIcon img {
-    width: 50px;
 }
 
 #randomInfo {

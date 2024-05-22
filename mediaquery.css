@@ -8,6 +8,10 @@ html, body {
 #toggleNav  #checkboxLines {
     display: none;
 }
+hgroup h1 img{
+    width: 24px;
+    height: 24px;
+}
 @media screen and (max-width: 1000px) {
     #results{
         width: 100%;
@@ -194,18 +198,14 @@ html, body {
     }
 }
 @media screen and (max-width:650px) {
-    #startButtons h2{
-        font-size: 20px;
-    }
     #startButtons, #startButtons div:first-of-type{
         display: flex;
         flex-direction: column;
     }
    
     #startButtons a{
-        font-size: 20px;
-        padding: 25px 8px;
-        margin: 5px;
+        padding: 8px;
+        margin-bottom: 5px;
     }
     #startButtons a img{
         margin-left: 30px;
