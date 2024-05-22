@@ -38,10 +38,7 @@ hgroup h1 img{
     }
     #startButtons #startNear{
         display: flex;
-        width: 100%;
-    }
-    #startNear img{
-        margin-left: 150px;
+        width: 35%;
     }
     #map,
     #mapSma,
@@ -201,7 +198,9 @@ hgroup h1 img{
         display: flex;
         flex-direction: column;
     }
-   
+    #startButtons #startNear{
+        width: 100%;
+    }
     #startButtons a{
         padding: 8px;
         margin-bottom: 5px;
