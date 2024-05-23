@@ -1,14 +1,14 @@
 let url; //URL för SMAPI
-let placeInfoDescElem;
+let resultElem; //Elementet som visar resultatet i en lista
 
-let resultElem;
-
+//Körs när webbsidan laddas in
 function init() {
     resultElem = document.querySelector("#results_favorites");
     filterResults()
 }
 window.addEventListener("load", init);
 
+//Hämtar sparade aktiviteter och filtrerar resultatet i SMAPI
 function filterResults() {
     let savedActivities = [];
     if (typeof localStorage !== "undefined") {
@@ -25,6 +25,8 @@ function filterResults() {
         getSMAPI();
     }
 }
+
+//Hämtar data från SMAPI
 function getSMAPI() {
     fetch(url)
         .then(response => response.json())
@@ -36,6 +38,8 @@ function getSMAPI() {
             console.error("det uppstod ett problem: " + error);
         });
 }
+
+//Skapar listan med aktiviteter
 function createList(data) {
     resultElem.innerHTML = "";
     if (data.payload.length == 0) {
@@ -122,6 +126,7 @@ function createList(data) {
     }
 }
 
+//Tar bort den valda aktiviteten från sparade
 function removeFromFavorite(event, id) {
     let clickedIMG = event.target;
     let favoritesArray = [];

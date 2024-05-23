@@ -1,49 +1,48 @@
 let myMap; //Objekt för kartan;
+let markers = L.layerGroup(); //Array med alla markörer
 let url; //URL för SMAPI
-let markers = L.layerGroup();
-let counter = 0; //Kontroll för funktionen showMoreCity
-let cityCounter;
+let cityCounter; // Räknare för filteralternativen av städerna
 
 //filter
-let savedElem;
-let childElem;
-let studentElem;
-let seniorElem;
-let outdoorElem;
+let savedElem; // Element för sparade alternativet
+let childElem; // Element för barn alternativet
+let studentElem; // Element för student alternativet
+let seniorElem; // Element för pensionär alternativet
+let outdoorElem; // Element för utomhus alternativet
 
-let activityTypeElem;
-let activitiyId = ["museum", "slott", "kyrka", "fornlämning", "ateljé", "konstgalleri", "biograf"];
-let citiesElem;
-let moreCitiesElem;
-let idOne = ["alvesta", "älmhult", "åseda", "berga", "borgholm", "braås", "dädesjö", "degerhamn", "dörarp", "eksjö", "färjestaden", "gemla", "gnosjö", "göteryd", "gränna", "gripenberg", "halltorp", "hamneda", "hjärtlanda", "hovmantorp", "huskvarna", "hultsfred", "hylletofta", "ingelstad", "jönköping", "kalmar", "känna", "kävsjö", "långasjö", "lessebo", "lidhult", "linneryd", "ljungby", "ljungbyholm", "målilla", "mörbylånga", "myresjö", "norrahammar", "norrhult", "nybro", "pelarne", "sandby", "skruv", "stockaryd", "sävsjö", "valdemarsvik", "värnamo", "växjö", "vetlanda", "vimmerby", "visingsö", "vissefjärda"];
+let activityTypeElem; // Element för aktivitet alternativen
+let activitiyId = ["museum", "slott", "kyrka", "fornlämning", "ateljé", "konstgalleri", "biograf"]; // Id för varje typ alternativ
+let citiesElem; // Element för städernas alternativ
+let idCity = ["alvesta", "älmhult", "åseda", "berga", "borgholm", "braås", "dädesjö", "degerhamn", "dörarp", "eksjö", "färjestaden", "gemla", "gnosjö", "göteryd", "gränna", "gripenberg", "halltorp", "hamneda", "hjärtlanda", "hovmantorp", "huskvarna", "hultsfred", "hylletofta", "ingelstad", "jönköping", "kalmar", "känna", "kävsjö", "långasjö", "lessebo", "lidhult", "linneryd", "ljungby", "ljungbyholm", "målilla", "mörbylånga", "myresjö", "norrahammar", "norrhult", "nybro", "pelarne", "sandby", "skruv", "stockaryd", "sävsjö", "valdemarsvik", "värnamo", "växjö", "vetlanda", "vimmerby", "visingsö", "vissefjärda"]; // Id för varje stad alternativ
 //Ikoner
-let icons = L.Icon.extend({
+
+let icons = L.Icon.extend({ //Skapar inställningar för ikoner
     options: {
         iconSize: [25, 50],
         iconAnchor: [12, 49],
         popupAnchor: [0, -50]
     }
 })
-let museumIcon = new icons({
+let museumIcon = new icons({ //Ikon för museum
     iconUrl: "Bilder/Markers/markermuseum.png"
 })
-let slottIcon = new icons({
+let slottIcon = new icons({ //Ikon för slott
     iconUrl: "Bilder/Markers/markercastle.png"
 })
-let kyrkaIcon = new icons({
+let kyrkaIcon = new icons({ // Ikon för kyrka
     iconUrl: "Bilder/Markers/markerchurch.png"
 })
-let fornlamningIcon = new icons({
+let fornlamningIcon = new icons({ //Ikon för fornlämningar
     iconUrl: "Bilder/Markers/markerancientmonument.png"
 })
-let konstgalleriIcon = new icons({
+let konstgalleriIcon = new icons({ //ikon för konstgalleri
     iconUrl: "Bilder/Markers/markerartgallery.png"
 })
-let biografIcon = new icons({
+let biografIcon = new icons({ //Ikon för biograf
     iconUrl: "Bilder/Markers/markercinema.png"
 })
 
-
+//Körs när sidan laddar
 function init() {
     activityTypeElem = document.querySelectorAll("#type input");
     citiesElem = document.querySelectorAll("#popular input");
@@ -66,22 +65,23 @@ function init() {
 }
 window.addEventListener("load", init);
 
+//Skapar kartan
 function initMap() {
     let zoom;
-    if(window.innerWidth <= 450){
+    if (window.innerWidth <= 450) {
         zoom = 7;
     }
-    else if(window.innerWidth <= 600){
+    else if (window.innerWidth <= 600) {
         zoom = 7.4;
     }
-    else if(window.innerWidth <= 800){
+    else if (window.innerWidth <= 800) {
         zoom = 7.6;
     }
     else if (window.innerWidth > 800 && window.innerWidth <= 1600) {
         zoom = 7.7;
     }
-    else{
-        zoom= 8;
+    else {
+        zoom = 8;
     }
     myMap = L.map("mapSma", {
         zoomDelta: 1,
@@ -94,26 +94,29 @@ function initMap() {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(myMap);
 }
-function changeMap(){
+
+//Ändrar det som kartan visar beroende på vilken skärmstorlek som användaren befinner sig på
+function changeMap() {
     let zoom;
-    if(window.innerWidth <= 450){
+    if (window.innerWidth <= 450) {
         zoom = 7;
     }
-    else if(window.innerWidth <= 600){
+    else if (window.innerWidth <= 600) {
         zoom = 7.4;
     }
-    else if(window.innerWidth <= 800){
+    else if (window.innerWidth <= 800) {
         zoom = 7.6;
     }
     else if (window.innerWidth > 800 && window.innerWidth <= 1600) {
         zoom = 7.7;
     }
-    else{
-        zoom= 8;
+    else {
+        zoom = 8;
     }
     myMap.setView([57.32, 15.5], zoom);
 }
 
+//Filtrerar resultaten för SMAPI
 function filterResults() {
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall";//Base URL
     let typeURL = "&descriptions="; //filter url för typ av aktivitet
@@ -123,7 +126,7 @@ function filterResults() {
     //Filter för städer och län
     for (let i = 0; i < citiesElem.length; i++) {
         if (citiesElem[i].checked == true) {
-            cityURL += idOne[i] + ",";
+            cityURL += idCity[i] + ",";
         }
         if (citiesElem[i].checked == false) {
             cityCounter++
@@ -173,6 +176,8 @@ function filterResults() {
     url += typeURL + cityURL;
     getSMAPI();
 }
+
+// Avcheckar alla filteralternativ
 function resetFilter() {
     for (let i = 0; i < activityTypeElem.length; i++) {
         activityTypeElem[i].checked = false;
@@ -187,6 +192,8 @@ function resetFilter() {
     outdoorElem.checked = false;
     filterResults();
 }
+
+// Hämtar info från SMAPI
 function getSMAPI() {
     fetch(url)
         .then(response => response.json())
@@ -199,6 +206,7 @@ function getSMAPI() {
         });
 }
 
+//Skapar markörer och lägger det på kartan
 function showMarkers(data) {
     markers.clearLayers();
     let currentActivity;

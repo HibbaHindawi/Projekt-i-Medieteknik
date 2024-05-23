@@ -1,34 +1,33 @@
-let infoElem;
-let id;
-let selectUrl = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall";
-let h1Elem;
-let specificMap;
-let icons = L.Icon.extend({
+let infoElem; //Element för att visa upp inforamtionen
+let selectUrl = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall"; //bas-url för SMAPI
+let h1Elem; //Referens till sidans H1-tagg
+let icons = L.Icon.extend({ //Skapar inställningar för ikoner
     options: {
         iconSize: [25, 50],
         iconAnchor: [12, 49],
         popupAnchor: [0, -50]
     }
 })
-let museumIcon = new icons({
+let museumIcon = new icons({ //Ikon för museum
     iconUrl: "Bilder/Markers/markermuseum.png"
 })
-let slottIcon = new icons({
+let slottIcon = new icons({ //Ikon för slott
     iconUrl: "Bilder/Markers/markercastle.png"
 })
-let kyrkaIcon = new icons({
+let kyrkaIcon = new icons({ // Ikon för kyrka
     iconUrl: "Bilder/Markers/markerchurch.png"
 })
-let fornlamningIcon = new icons({
+let fornlamningIcon = new icons({ //Ikon för fornlämningar
     iconUrl: "Bilder/Markers/markerancientmonument.png"
 })
-let konstgalleriIcon = new icons({
+let konstgalleriIcon = new icons({ //ikon för konstgalleri
     iconUrl: "Bilder/Markers/markerartgallery.png"
 })
-let biografIcon = new icons({
+let biografIcon = new icons({ //Ikon för biograf
     iconUrl: "Bilder/Markers/markercinema.png"
 })
 
+//Körs när sidan laddas
 function init() {
     infoElem = document.querySelector("#placeDesc");
     h1Elem = document.querySelector("#h1Info");
@@ -36,8 +35,9 @@ function init() {
 }
 window.addEventListener("load", init);
 
+//Skapar kartan
 function newMap(lat, lng, name, description) {
-    specificMap = L.map("mapInfo").setView([lat, lng], 16); //Ändra koordinater för att byta det som visas på kartan, sista värdet är zoom värdet, minska för att zooma ut och tvärtom
+    let specificMap = L.map("mapInfo").setView([lat, lng], 16); //Ändra koordinater för att byta det som visas på kartan, sista värdet är zoom värdet, minska för att zooma ut och tvärtom
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -66,8 +66,9 @@ function newMap(lat, lng, name, description) {
     marker.bindPopup("<b>" + name + "</b>").openPopup();
 }
 
+//Hämtar information från SMAPI
 function getInfo() {
-    id = localStorage.getItem("Id");
+    let id = localStorage.getItem("Id");
     selectUrl += ("&ids=" + id);
 
     fetch(selectUrl)
@@ -81,6 +82,7 @@ function getInfo() {
         });
 }
 
+//Sätter informationen på h1-taggen samt html title, anropar newMap med information
 function setInfo(data) {
     for (let i = 0; i < data.payload.length; i++) {
         let specificData = data.payload[i];
@@ -89,6 +91,8 @@ function setInfo(data) {
         newMap(specificData.lat, specificData.lng, specificData.name, specificData.description);
     }
 }
+
+//Skapar HTML-kod för informationssidan
 function createDesc(data) {
     for (let i = 0; i < data.payload.length; i++) {
         let specificData = data.payload[i];
@@ -101,7 +105,6 @@ function createDesc(data) {
         heartIMG.style.cursor = "pointer";
         let favoritesArray = [];
         if (typeof localStorage !== "undefined") {
-            // localStorage is supported
             let storedFavorites = localStorage.getItem("favorites");
             if (storedFavorites !== null) {
                 favoritesArray = storedFavorites.split(",");
@@ -127,7 +130,7 @@ function createDesc(data) {
         divContent.appendChild(categoryParagraph);
 
         const cityParagraph = document.createElement("p");
-        cityParagraph.innerHTML = "<span>Stad:</span> " + specificData.city + " | <span>Adress:</span> " + specificData.address;
+        cityParagraph.innerHTML = "<span>Stad/By:</span> " + specificData.city + " | <span>Adress:</span> " + specificData.address;
         if (specificData.phone_number != "") {
             cityParagraph.innerHTML += " | <span>" + specificData.phone_number + " </span><img id='phoneImg' src='Bilder/Ikoner/phone.png' alt='Telefonnummer ikon'>";
         }
@@ -146,7 +149,7 @@ function createDesc(data) {
         const ratingDiv = document.createElement("div");
         ratingDiv.classList.add("PushIn");
         const ratingParagraph = document.createElement("p");
-        if (rating == 1) {
+        if (rating == 1) { //Betyg
             ratingParagraph.innerHTML = "<span>Betyg:</span> <img src='Bilder/Ikoner/starFull.png' alt='Full Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> <img src='Bilder/Ikoner/starEmpty.png' alt='Empty Star'> | "
         }
         else if (rating > 1 && rating <= 1.5) {
@@ -244,6 +247,8 @@ function createDesc(data) {
         infoElem.appendChild(newDiv);
     }
 }
+
+//Lägger till den valda aktiviteter i sparade
 function addToFavorite(event, id) {
     let clickedIMG = event.target;
     let favoritesArray = localStorage.getItem("favorites");

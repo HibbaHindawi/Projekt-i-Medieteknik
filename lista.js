@@ -1,22 +1,21 @@
 let url; //URL för SMAPI
-let cityCounter;
+let cityCounter; // Räknare för filteralternativen av städerna
 
 //filter
-let savedElem;
-let childElem;
-let studentElem;
-let seniorElem;
-let outdoorElem;
+let savedElem; // Element för sparade alternativet
+let childElem; // Element för barn alternativet
+let studentElem; // Element för student alternativet
+let seniorElem; // Element för pensionär alternativet
+let outdoorElem; // Element för utomhus alternativet
 
-let activityTypeElem;
-let activitiyId = ["museum", "slott", "kyrka", "fornlämning", "ateljé", "konstgalleri", "biograf"];
-let citiesElem;
-let moreCitiesElem;
-let idOne = ["alvesta", "älmhult", "åseda", "berga", "borgholm", "braås", "dädesjö", "degerhamn", "dörarp", "eksjö", "färjestaden", "gemla", "gnosjö", "göteryd", "gränna", "gripenberg", "halltorp", "hamneda", "hjärtlanda", "hovmantorp", "huskvarna", "hultsfred", "hylletofta", "ingelstad", "jönköping", "kalmar", "känna", "kävsjö", "långasjö", "lessebo", "lidhult", "linneryd", "ljungby", "ljungbyholm", "målilla", "mörbylånga", "myresjö", "norrahammar", "norrhult", "nybro", "pelarne", "sandby", "skruv", "stockaryd", "sävsjö", "valdemarsvik", "värnamo", "växjö", "vetlanda", "vimmerby", "visingsö", "vissefjärda"];
+let activityTypeElem; // Element för aktivitet alternativen
+let activitiyId = ["museum", "slott", "kyrka", "fornlämning", "ateljé", "konstgalleri", "biograf"]; // Id för varje typ alternativ
+let citiesElem; // Element för städernas alternativ
+let idCity = ["alvesta", "älmhult", "åseda", "berga", "borgholm", "braås", "dädesjö", "degerhamn", "dörarp", "eksjö", "färjestaden", "gemla", "gnosjö", "göteryd", "gränna", "gripenberg", "halltorp", "hamneda", "hjärtlanda", "hovmantorp", "huskvarna", "hultsfred", "hylletofta", "ingelstad", "jönköping", "kalmar", "känna", "kävsjö", "långasjö", "lessebo", "lidhult", "linneryd", "ljungby", "ljungbyholm", "målilla", "mörbylånga", "myresjö", "norrahammar", "norrhult", "nybro", "pelarne", "sandby", "skruv", "stockaryd", "sävsjö", "valdemarsvik", "värnamo", "växjö", "vetlanda", "vimmerby", "visingsö", "vissefjärda"]; // Id för varje stad alternativ
 
-let resultElem;
+let resultElem; // Element för att visa alla aktiviteter
 
-
+//Körs när sidan laddar
 function init() {
     activityTypeElem = document.querySelectorAll("#type input");
     citiesElem = document.querySelectorAll("#popular input");
@@ -37,6 +36,7 @@ function init() {
 }
 window.addEventListener("load", init);
 
+//Filtrerar resultaten för SMAPI
 function filterResults() {
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&order_by=city";//Base URL
     let typeURL = "&descriptions="; //filter url för typ av aktivitet
@@ -46,7 +46,7 @@ function filterResults() {
     cityCounter = 0;
     for (let i = 0; i < citiesElem.length; i++) {
         if (citiesElem[i].checked == true) {
-            cityURL += idOne[i] + ",";
+            cityURL += idCity[i] + ",";
         }
         if (citiesElem[i].checked == false) {
             cityCounter++
@@ -69,7 +69,6 @@ function filterResults() {
     }
     let favoritesArray = [];
     if (typeof localStorage !== "undefined") {
-        // localStorage is supported
         let storedFavorites = localStorage.getItem("favorites");
         if (storedFavorites !== null) {
             favoritesArray = storedFavorites.split(",");
@@ -95,6 +94,8 @@ function filterResults() {
     url += typeURL + cityURL;
     getSMAPI();
 }
+
+// Avcheckar alla filteralternativ
 function resetFilter() {
     //Uncheck
     for (let i = 0; i < activityTypeElem.length; i++) {
@@ -110,6 +111,8 @@ function resetFilter() {
     outdoorElem.checked = false;
     filterResults();
 }
+
+// Hämtar info från SMAPI
 function getSMAPI() {
     fetch(url)
         .then(response => response.json())
@@ -121,6 +124,8 @@ function getSMAPI() {
             console.error("det uppstod ett problem: " + error);
         });
 }
+
+// Skapar HTML-kod för listan
 function createList(data) {
     resultElem.innerHTML = "";
     if (data.payload.length == 0) {
@@ -211,22 +216,23 @@ function createList(data) {
     }
 }
 
+// Lägger till den valda aktiviteten i sparade
 function addToFavorite(event, id) {
     let clickedIMG = event.target;
     let favoritesArray = localStorage.getItem("favorites");
-  
+
     if (favoritesArray != null && favoritesArray.includes(id)) {
-      clickedIMG.src = "Bilder/Ikoner/heartEmpty.png";
-      let filteredNumbers = favoritesArray.split(",").filter(number => number !== id);
-      localStorage.setItem("favorites", filteredNumbers.join(","));
+        clickedIMG.src = "Bilder/Ikoner/heartEmpty.png";
+        let filteredNumbers = favoritesArray.split(",").filter(number => number !== id);
+        localStorage.setItem("favorites", filteredNumbers.join(","));
     } else {
-      if (favoritesArray) {
-        favoritesArray += ",";
-      } else {
-        favoritesArray = "";
-      }
-      favoritesArray += id;
-      clickedIMG.src = "Bilder/Ikoner/heartFull.png";
-      localStorage.setItem("favorites", favoritesArray);
+        if (favoritesArray) {
+            favoritesArray += ",";
+        } else {
+            favoritesArray = "";
+        }
+        favoritesArray += id;
+        clickedIMG.src = "Bilder/Ikoner/heartFull.png";
+        localStorage.setItem("favorites", favoritesArray);
     }
-  }
+}

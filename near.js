@@ -1,42 +1,45 @@
 let myMap; //Objekt för kartan;
 let url; //URL för SMAPI
-let markers = L.layerGroup();
+let markers = L.layerGroup(); //Array med alla markörer
 
-let savedElem;
-let childElem;
-let studentElem;
-let seniorElem;
-let outdoorElem;
+//filter
+let savedElem; // Element för sparade alternativet
+let childElem; // Element för barn alternativet
+let studentElem; // Element för student alternativet
+let seniorElem; // Element för pensionär alternativet
+let outdoorElem; // Element för utomhus alternativet
 
-let activityTypeElem;
-let activitiyId = ["museum", "slott", "kyrka", "fornlämning", "ateljé", "konstgalleri", "biograf"];
+let activityTypeElem; // Element för aktivitet alternativen
+let activitiyId = ["museum", "slott", "kyrka", "fornlämning", "ateljé", "konstgalleri", "biograf"]; // Id för varje typ alternativ
+
 //Ikoner
-let icons = L.Icon.extend({
+let icons = L.Icon.extend({ //Skapar inställningar för ikoner
     options: {
         iconSize: [25, 50],
         iconAnchor: [12, 49],
         popupAnchor: [0, -50]
     }
 })
-let museumIcon = new icons({
+let museumIcon = new icons({ //Ikon för museum
     iconUrl: "Bilder/Markers/markermuseum.png"
 })
-let slottIcon = new icons({
+let slottIcon = new icons({ //Ikon för slott
     iconUrl: "Bilder/Markers/markercastle.png"
 })
-let kyrkaIcon = new icons({
+let kyrkaIcon = new icons({ // Ikon för kyrka
     iconUrl: "Bilder/Markers/markerchurch.png"
 })
-let fornlamningIcon = new icons({
+let fornlamningIcon = new icons({ //Ikon för fornlämningar
     iconUrl: "Bilder/Markers/markerancientmonument.png"
 })
-let konstgalleriIcon = new icons({
+let konstgalleriIcon = new icons({ //ikon för konstgalleri
     iconUrl: "Bilder/Markers/markerartgallery.png"
 })
-let biografIcon = new icons({
+let biografIcon = new icons({ //Ikon för biograf
     iconUrl: "Bilder/Markers/markercinema.png"
 })
 
+//Körs när sidan laddar
 function init() {
     activityTypeElem = document.querySelectorAll("#type input");
     savedElem = document.querySelector("#favoriteBox");
@@ -57,8 +60,9 @@ function init() {
 }
 window.addEventListener("load", init);
 
+//Skapar kartan
 function initMap() {
-    myMap = L.map("map").locate({setView: true, maxZoom: 13});
+    myMap = L.map("map").locate({ setView: true, maxZoom: 13 });
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -66,16 +70,17 @@ function initMap() {
     filterResults()
 }
 
+//Filtrerar resultaten för SMAPI
 function filterResults() {
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall";//Base URL
     let typeURL = "&descriptions="; //filter url för typ av aktivitet
     let typeCounter = 0;
 
-    for(let i = 0; i < activityTypeElem.length; i++){
-        if(activityTypeElem[i].checked == true){
+    for (let i = 0; i < activityTypeElem.length; i++) {
+        if (activityTypeElem[i].checked == true) {
             typeURL += activitiyId[i] + ",";
         }
-        if(activityTypeElem[i].checked == false){
+        if (activityTypeElem[i].checked == false) {
             typeCounter++;
         }
     }
@@ -110,6 +115,8 @@ function filterResults() {
     url += typeURL;
     getSMAPI();
 }
+
+// Avcheckar alla filteralternativ
 function resetFilter() {
     //Uncheck
     for (let i = 0; i < activityTypeElem.length; i++) {
@@ -122,6 +129,8 @@ function resetFilter() {
     outdoorElem.checked = false;
     filterResults();
 }
+
+// Hämtar info från SMAPI
 function getSMAPI() {
     fetch(url)
         .then(response => response.json())
@@ -134,6 +143,7 @@ function getSMAPI() {
         });
 }
 
+//Skapar markörer och lägger det på kartan
 function showMarkers(data) {
     markers.clearLayers();
     let currentActivity;

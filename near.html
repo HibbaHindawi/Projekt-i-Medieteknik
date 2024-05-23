@@ -14,18 +14,18 @@
 </head>
 
 <body>
-    <label id="toggleNav">
+    <div id="toggleNav">
         <input id="checkboxLines" type="checkbox">
-        <div class="toggle">
+        <label for="checkboxLines" class="toggle">
             <span class="topLine lines"></span>
             <span class="middleLine lines"></span>
             <span class="lowerLine lines"></span>
-        </div>
+        </label>
 
         <div class="slide">
-            <img id="slidelogo" src="/Bilder/logoslide.png" alt="Cultactivi logga">
+            <img id="slidelogo" src="/Bilder/logo.svg" alt="Cultactivi logga">
             <ul>
-                <li> <a href="/index.html">Start</a></li>
+                <li><a href="/index.html">Start</a></li>
                 <li><a href="/listaaktivitet.html">Aktiviteter</a></li>
                 <li><a href="/smaland.html">Karta</a></li>
                 <li><a href="/near.html">Nära dig</a></li>
@@ -33,9 +33,9 @@
                 <li><a href="/favorites.html">Sparade</a></li>
             </ul>
         </div>
-    </label>
+    </div>
     <nav>
-        <a href="index.html" id="logga"><img src="/Bilder/logonav.png" alt="Logga"></a>
+        <a href="index.html" id="logga"><img src="/Bilder/logo.svg" alt="Logga"></a>
         <a href="index.html">Start</a>
         <a href="listaaktivitet.html">Aktiviteter</a>
         <a href="smaland.html">Karta</a>
@@ -45,7 +45,7 @@
     <main>
         <hgroup>
             <h1><img src="/Bilder/adressicon.png" alt="Marker som ikon"> Aktiviteter Nära Dig </h1>
-            <h2>Tryck på en aktivitetet för mer information</h2>
+            <p>Tryck på en aktivitetet för mer information</p>
         </hgroup>
         <div id="listPush">
             <div id="filterParent">
@@ -53,7 +53,7 @@
                 <div>
                     <div id="filter-system">
                         <div>
-                            <legend>Sparade, Rabatter och tillägg</legend>
+                            <h3>Sparade, Rabatter och tillägg</h3>
                             <div id="savedFilter">
                                 <div>
                                     <input id="favoriteBox" type="checkbox">
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div>
-                            <legend>Typ av aktivitet:</legend>
+                            <h3>Typ av aktivitet:</h3>
                             <div id="type">
                                 <div>
                                     <input id="museum" type="checkbox">
@@ -113,6 +113,7 @@
                 </div>
             </div>
             <div id="map"></div>
+        </div>
     </main>
 </body>
 

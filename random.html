@@ -13,23 +13,22 @@
     <script src="/generate.js"></script>
     <script src="index.js"></script>
     <link rel="stylesheet" href="mediaquery.css">
-
 </head>
 
 <body>
 
-    <label id="toggleNav">
+    <div id="toggleNav">
         <input id="checkboxLines" type="checkbox">
-        <div class="toggle">
+        <label for="checkboxLines" class="toggle">
             <span class="topLine lines"></span>
             <span class="middleLine lines"></span>
             <span class="lowerLine lines"></span>
-        </div>
+        </label>
 
         <div class="slide">
-            <img id="slidelogo" src="/Bilder/logoslide.png" alt="Cultactivi logga">
+            <img id="slidelogo" src="/Bilder/logo.svg" alt="Cultactivi logga">
             <ul>
-                <li> <a href="/index.html">Start</a></li>
+                <li><a href="/index.html">Start</a></li>
                 <li><a href="/listaaktivitet.html">Aktiviteter</a></li>
                 <li><a href="/smaland.html">Karta</a></li>
                 <li><a href="/near.html">Nära dig</a></li>
@@ -37,9 +36,9 @@
                 <li><a href="/favorites.html">Sparade</a></li>
             </ul>
         </div>
-    </label>
+    </div>
     <nav>
-        <a href="index.html" id="logga"><img src="/Bilder/logonav.png" alt="Logga"></a>
+        <a href="index.html" id="logga"><img src="/Bilder/logo.svg" alt="Logga"></a>
         <a href="index.html">Start</a>
         <a href="listaaktivitet.html">Aktiviteter</a>
         <a href="smaland.html">Karta</a>
@@ -49,22 +48,10 @@
     <main>
         <hgroup>
             <h1 id="randomH1"><img src="/Bilder/dice.png" alt="En tärning som ikon"> Slumpen </h1>
-            <h2>Tryck på knappen för en slumpmässig aktivitet</h2>
+            <p>Tryck på knappen för en slumpmässig aktivitet</p>
         </hgroup>
         <button type="button" id="generateButton"><img src="/Bilder/dice.png" alt="Tärning som ikon">Slumpgenerator</button>
-        <div id="activiti"></div>
     </main>
-
-    <div id="showActivity"></div>
-
-    <hgroup>
-        <h1 id="h1Info"></h1>
-    </hgroup>
-    <div id="mapInfo"></div>
-    <div id="placeDesc">
-        <!--javascript ska lägga in div med information här-->
-    </div>
-
 </body>
 
 </html>

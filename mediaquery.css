@@ -1,24 +1,6 @@
-html,
-body {
-    height: 100%;
-}
-
-#toggleNav .slide {
-    display: none;
-}
-
-#toggleNav #checkboxLines {
-    display: none;
-}
-
-hgroup h1 img {
-    height: 24px;
-}
-#toggleNav .slide{
-    overflow-y: auto;
-}
-
 @media screen and (max-width: 1000px) {
+
+    /*Lista*/
     #results {
         width: 100%;
         height: 65vh;
@@ -29,6 +11,7 @@ hgroup h1 img {
         align-items: center;
     }
 
+    /*Filter system*/
     #filterParent {
         width: 100%;
         order: 2;
@@ -38,6 +21,7 @@ hgroup h1 img {
         height: 180px;
     }
 
+    /*Karta*/
     #map,
     #mapSma {
         width: 100%;
@@ -46,35 +30,67 @@ hgroup h1 img {
 }
 
 @media screen and (max-width:815px) {
+    main {
+        max-width: 85%;
+    }
+
+    /*Lista*/
     #results_favorites {
         height: 82vh;
     }
 
+    .infoList {
+        font-size: 14px;
+    }
+
+    .infoList img {
+        width: 14px;
+        height: 14px;
+    }
+
+    .favorite img {
+        height: 22px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    /*Start*/
     #startButtons #startNear {
         margin-top: 10px;
         display: flex;
         width: 35%;
     }
 
-    #map,
-    #mapSma,
-    #mapInfo {
-        z-index: 0;
-    }
-
-    nav {
-        display: none;
-    }
-
     #logo {
         width: 200px;
+        padding-top: 40px;
     }
 
     .info {
         max-width: 100%;
     }
 
+    #startButtons {
+        margin-bottom: 0;
+    }
+
+    /*Karta*/
+    #map,
+    #mapSma,
+    #mapInfo {
+        z-index: 0;
+    }
+
+    /*Navigeringsmenyn*/
+    nav {
+        display: none;
+    }
+
+    /*Slide meny*/
     #toggleNav #slidelogo {
+        width: 75px;
         padding: 66px;
         background-color: white;
         border: solid 1px;
@@ -188,39 +204,18 @@ hgroup h1 img {
     #toggleNav input:checked~.slide {
         transform: translateX(0);
     }
-
-    #startButtons {
-        margin-bottom: 0;
-    }
-
-    #logo {
-        padding-top: 40px;
-    }
-
-    main {
-        max-width: 85%;
-    }
-
-    .infoList {
-        font-size: 14px;
-    }
-
-    .infoList img {
-        width: 14px;
-        height: 14px;
-    }
-
-    .favorite img {
-        height: 22px;
-    }
-
-    .title {
-        font-size: 18px;
-    }
 }
 
 @media screen and (max-width:650px) {
+    hgroup {
+        text-align: center;
+    }
 
+    hgroup h1 {
+        font-size: 26px;
+    }
+
+    /*Start*/
     #startButtons,
     #startButtons div:first-of-type {
         display: flex;
@@ -245,15 +240,7 @@ hgroup h1 img {
         margin-top: 0px;
     }
 
-    hgroup {
-        text-align: center;
-    }
-
-    hgroup h1 {
-        font-size: 26px;
-    }
-
-    .info h3 {
+    .info h2 {
         font-size: 18px;
     }
 
@@ -261,12 +248,15 @@ hgroup h1 img {
         font-size: 16px;
     }
 
+    /*Karta*/
+
     #map,
     #mapSma {
         height: 500px;
         width: 90%;
     }
 
+    /*Informationssida*/
     #h1Info {
         margin-top: 35px;
     }
@@ -276,6 +266,7 @@ hgroup h1 img {
         margin-left: 18px;
     }
 
+    /*Lista*/
     #results {
         width: 90%;
         margin-left: 0px;
@@ -287,22 +278,27 @@ hgroup h1 img {
         max-width: 90%;
     }
 
-    hgroup h2 {
+    hgroup p {
         font-size: 16px;
     }
 
+    /*Informationssida*/
     #h1Info {
         margin-top: 35px;
     }
 
+    /*Karta*/
     #mapInfo {
         width: 80%;
         margin-left: 30px;
     }
 
-    #mapSma, #map {
+    #mapSma,
+    #map {
         width: 85%;
     }
+
+    /*Lista*/
     #results {
         width: 80%;
         margin-left: 0px;
