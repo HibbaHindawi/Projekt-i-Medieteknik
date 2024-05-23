@@ -100,7 +100,6 @@
 
     #toggleNav .slide {
         height: 100%;
-        width: 200px;
         top: 0;
         left: 0;
         bottom: 0;
@@ -146,7 +145,7 @@
     }
 
     #toggleNav .toggle {
-        position: absolute;
+        position: fixed;
         height: 30px;
         width: 30px;
         top: 20px;

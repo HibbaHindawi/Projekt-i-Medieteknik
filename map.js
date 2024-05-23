@@ -145,7 +145,7 @@ function filterResults() {
             typeCounter++;
         }
     }
-    if (typeCounter == 7) {
+    if (typeCounter == activityTypeElem.length) {
         typeURL += "museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"
     }
     let favoritesArray = [];

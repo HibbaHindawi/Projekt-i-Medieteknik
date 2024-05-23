@@ -11,11 +11,6 @@ function init() {
 window.addEventListener("load", init);
 // ---------------------------------------------------
 
-// Skapar random funktionen
-function startProgram() {
-    generateRandomActivity();
-} // Slut startProgram*/
-
 // ---------------------------------------------------
 //Hämtar data
 function getActivities() {
@@ -39,7 +34,7 @@ function getRandomActivity(jsonData) {
 }
 
 //Skickar svar från getActivities till getRandomActivity
-async function generateRandomActivity() {
+function generateRandomActivity() {
     const activities = getActivities();
     getRandomActivity(activities);
 }

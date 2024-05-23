@@ -51,18 +51,21 @@ hgroup h1 img {
 
 /*------------ Stora loggan och textfältet ------------*/
 .info {
-    font-size: 18px;
     padding: 20px;
     border-radius: 20px;
     color: rgb(55, 55, 55);
     box-shadow: 2px 2px 1px;
     border: solid 5px rgba(183, 183, 183, 0.3);
 }
+.info h2{
+    font-size: 18px;
+
+}
 
 #logo {
     display: block;
     margin: 0 auto;
-    width: 280px;
+    width: 315px;
     padding-top: 20px;
     margin-bottom: 5px;
 }
