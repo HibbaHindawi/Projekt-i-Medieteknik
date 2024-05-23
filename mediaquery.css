@@ -14,6 +14,9 @@ body {
 hgroup h1 img {
     height: 24px;
 }
+#toggleNav .slide{
+    overflow-y: auto;
+}
 
 @media screen and (max-width: 1000px) {
     #results {
@@ -48,6 +51,7 @@ hgroup h1 img {
     }
 
     #startButtons #startNear {
+        margin-top: 10px;
         display: flex;
         width: 35%;
     }
@@ -258,8 +262,9 @@ hgroup h1 img {
 
     #map,
     #mapSma {
-        width: 100%;
         height: 500px;
+        width: 90%;
+        margin-left: 18px;
     }
 
     #h1Info {
@@ -270,13 +275,6 @@ hgroup h1 img {
         width: 90%;
         margin-left: 18px;
     }
-
-    #mapSma {
-        width: 90%;
-        margin-left: 18px;
-    }
-
-    #map {}
 
     #results {
         width: 85%;
