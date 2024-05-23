@@ -1,45 +1,57 @@
-html, body {
+html,
+body {
     height: 100%;
-  }
+}
+
 #toggleNav .slide {
     display: none;
 }
 
-#toggleNav  #checkboxLines {
+#toggleNav #checkboxLines {
     display: none;
 }
-hgroup h1 img{
+
+hgroup h1 img {
     height: 24px;
 }
+
 @media screen and (max-width: 1000px) {
-    #results{
+    #results {
         width: 100%;
         height: 65vh;
     }
-    #listPush{
+
+    #listPush {
         flex-direction: column;
         align-items: center;
     }
-    #filterParent{
+
+    #filterParent {
         width: 100%;
         order: 2;
     }
-    #filterParent #filter-system{
+
+    #filterParent #filter-system {
         height: 180px;
     }
-    #map, #mapSma{
+
+    #map,
+    #mapSma {
         width: 100%;
         height: 600px;
     }
 }
+
 @media screen and (max-width:815px) {
-    #results_favorites{
+    #results_favorites {
         height: 82vh;
     }
-    #startButtons #startNear{
+
+    #startButtons #startNear {
         display: flex;
         width: 35%;
     }
+
     #map,
     #mapSma,
     #mapInfo {
@@ -80,9 +92,11 @@ hgroup h1 img{
         box-shadow: 2px 2px 5px rgb(106, 106, 106);
         z-index: 1;
     }
-    #toggleNav ul{
+
+    #toggleNav ul {
         padding: 0;
     }
+
     #toggleNav ul li {
         list-style: none;
     }
@@ -170,69 +184,133 @@ hgroup h1 img{
     #toggleNav input:checked~.slide {
         transform: translateX(0);
     }
-    #startButtons{
+
+    #startButtons {
         margin-bottom: 0;
     }
-    #logo{
+
+    #logo {
         padding-top: 40px;
     }
-    main{
+
+    main {
         max-width: 85%;
     }
-    .infoList{
+
+    .infoList {
         font-size: 14px;
     }
-    .infoList img{
+
+    .infoList img {
         width: 14px;
         height: 14px;
     }
-    .favorite img{
+
+    .favorite img {
         height: 22px;
     }
-    .title{
+
+    .title {
         font-size: 18px;
     }
 }
+
 @media screen and (max-width:650px) {
-    #startButtons, #startButtons div:first-of-type{
+
+    #startButtons,
+    #startButtons div:first-of-type {
         display: flex;
         flex-direction: column;
     }
-    #startButtons #startNear{
+
+    #startButtons #startNear {
         width: 100%;
     }
-    #startButtons a{
+
+    #startButtons a {
         padding: 8px;
         margin-bottom: 5px;
     }
-    #startButtons a img{
+
+    #startButtons a img {
         margin-left: 30px;
     }
-    div #startNear{
+
+    div #startNear {
         margin-top: 0px;
     }
-    hgroup{
+
+    hgroup {
         text-align: center;
     }
-    hgroup h1{
+
+    hgroup h1 {
         font-size: 26px;
     }
-    .info h3{
+
+    .info h3 {
         font-size: 18px;
     }
-    .info p{
+
+    .info p {
         font-size: 16px;
     }
-    #map, #mapSma{
+
+    #map,
+    #mapSma {
         width: 100%;
         height: 500px;
     }
+
+    #h1Info {
+        margin-top: 35px;
+    }
+
+    #mapInfo {
+        width: 90%;
+        margin-left: 18px;
+    }
+
+    #mapSma {
+        width: 90%;
+        margin-left: 18px;
+    }
+
+    #map {}
+
+    #results {
+        width: 85%;
+        margin-left: 0px;
+    }
 }
-@media screen and (max-width:400px){
-    main{
+
+@media screen and (max-width:400px) {
+    main {
         max-width: 90%;
     }
-    hgroup h2{
+
+    hgroup h2 {
         font-size: 16px;
+    }
+
+    #h1Info {
+        margin-top: 35px;
+    }
+
+    #mapInfo {
+        width: 80%;
+        margin-left: 30px;
+    }
+
+    #mapSma {
+        width: 80%;
+        margin-left: 30px;
+    }
+
+    #map {}
+
+    #results {
+        width: 80%;
+        margin-left: 0px;
     }
 }
