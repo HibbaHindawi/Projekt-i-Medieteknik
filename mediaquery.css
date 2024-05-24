@@ -145,7 +145,7 @@
     }
 
     #toggleNav .toggle {
-        position: fixed;
+        position: absolute;
         height: 30px;
         width: 30px;
         top: 20px;
