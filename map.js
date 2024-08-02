@@ -99,7 +99,7 @@ function createFilters(data) {
         for (let i = 0; i < filter.length; i++) {
             filter[i].addEventListener("change", filterResults);
         }
-        citiesElem = document.querySelectorAll("input");
+        citiesElem = document.querySelectorAll("#popular input");
         filterResults();
     }
 }

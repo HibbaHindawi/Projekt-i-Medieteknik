@@ -69,7 +69,7 @@ function createFilters(data) {
         for (let i = 0; i < filter.length; i++) {
             filter[i].addEventListener("change", filterResults);
         }
-        citiesElem = document.querySelectorAll("input");
+        citiesElem = document.querySelectorAll("#popular input");
         filterResults();
     }
 }
@@ -78,19 +78,6 @@ function filterResults() {
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&order_by=city";//Base URL
     let typeURL = "&descriptions="; //filter url för typ av aktivitet
     let typeCounter = 0;
-    let cityURL = "&cities=";
-    cityCounter = 0;
-    for (let i = 0; i < citiesElem.length; i++) {
-        if (citiesElem[i].checked == true) {
-            cityURL += citiesElem[i].id + ",";
-        }
-        if (citiesElem[i].checked == false) {
-            cityCounter++
-        }
-    }
-    if (cityCounter == citiesElem.length) {
-        cityURL = "";
-    }
 
     for (let i = 0; i < activityTypeElem.length; i++) {
         if (activityTypeElem[i].checked == true) {
@@ -110,7 +97,6 @@ function filterResults() {
             favoritesArray = storedFavorites.split(",");
         }
     }
-
     if (favoritesArray.length > 0 && savedElem.checked) {
         url += "&ids=" + favoritesArray;
     }
@@ -125,6 +111,20 @@ function filterResults() {
     }
     if (outdoorElem.checked == true) {
         url += "&outdoors=Y";
+    }
+
+    let cityURL = "&cities=";
+    cityCounter = 0;
+    for (let i = 0; i < citiesElem.length; i++) {
+        if (citiesElem[i].checked == true) {
+            cityURL += citiesElem[i].id + ",";
+        }
+        if (citiesElem[i].checked == false) {
+            cityCounter++
+        }
+    }
+    if (cityCounter == citiesElem.length) {
+        cityURL = "";
     }
     //Övriga filter
     url += typeURL + cityURL;
@@ -180,7 +180,13 @@ function createList(data) {
             let favoritDiv = document.createElement("div");
             favoritDiv.classList.add("favorite");
             let heartIMG = document.createElement("img");
-            let favoritesArray = []
+            let favoritesArray = [];
+            if (typeof localStorage !== "undefined") {
+                let storedFavorites = localStorage.getItem("favorites");
+                if (storedFavorites !== null) {
+                    favoritesArray = storedFavorites.split(",");
+                }
+            }
             if (favoritesArray.length > 0 && favoritesArray.includes(newA.id)) {
                 heartIMG.alt = "Full heart";
                 heartIMG.src = "Bilder/Ikoner/heartFull.png";
