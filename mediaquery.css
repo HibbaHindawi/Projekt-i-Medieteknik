@@ -270,6 +270,21 @@
         width: 90%;
         margin-left: 0px;
     }
+
+    /*Slump knapp*/
+    #randomInformation{
+        margin: 0;
+        font-size: 0px;
+        cursor: pointer;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1;
+    }
+    #randomInformation img, #generateButton img{
+        margin: 5px;
+        width: 30px;
+    }
 }
 
 @media screen and (max-width:400px) {

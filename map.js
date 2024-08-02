@@ -13,7 +13,7 @@ let outdoorElem; // Element för utomhus alternativet
 let activityTypeElem; // Element för aktivitet alternativen
 let activitiyId = ["museum", "slott", "kyrka", "fornlämning", "ateljé", "konstgalleri", "biograf"]; // Id för varje typ alternativ
 let citiesElem; // Element för städernas alternativ
-let idCity = ["alvesta", "älmhult", "åseda", "berga", "borgholm", "braås", "dädesjö", "degerhamn", "dörarp", "eksjö", "färjestaden", "gemla", "gnosjö", "göteryd", "gränna", "gripenberg", "halltorp", "hamneda", "hjärtlanda", "hovmantorp", "huskvarna", "hultsfred", "hylletofta", "ingelstad", "jönköping", "kalmar", "känna", "kävsjö", "långasjö", "lessebo", "lidhult", "linneryd", "ljungby", "ljungbyholm", "målilla", "mörbylånga", "myresjö", "norrahammar", "norrhult", "nybro", "pelarne", "sandby", "skruv", "stockaryd", "sävsjö", "valdemarsvik", "värnamo", "växjö", "vetlanda", "vimmerby", "visingsö", "vissefjärda"]; // Id för varje stad alternativ
+let filterlist; // Element för att skapa alternativ till städerna
 //Ikoner
 
 let icons = L.Icon.extend({ //Skapar inställningar för ikoner
@@ -45,7 +45,6 @@ let biografIcon = new icons({ //Ikon för biograf
 //Körs när sidan laddar
 function init() {
     activityTypeElem = document.querySelectorAll("#type input");
-    citiesElem = document.querySelectorAll("#popular input");
     savedElem = document.querySelector("#favoriteBox");
     childElem = document.querySelector("#child");
     studentElem = document.querySelector("#student");
@@ -54,17 +53,56 @@ function init() {
     if (document.querySelector("#mapSma")) {
         initMap();
         resetFilter();
-        filterResults();
+        getSMAPIonce();
     }
     window.addEventListener("resize", changeMap);
-    let filter = document.querySelectorAll("#filter-system input");
-    for (let i = 0; i < filter.length; i++) {
-        filter[i].addEventListener("change", filterResults);
-    }
     document.querySelector("#reset").addEventListener("click", resetFilter);
 }
 window.addEventListener("load", init);
-
+function getSMAPIonce() {
+    url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&descriptions=museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            createFilters(data);
+        })
+        .catch(error => {
+            console.error("det uppstod ett problem: " + error);
+        });
+}
+function createFilters(data) {
+    filterlist = document.querySelector("#popular");
+    filterlist.innerHTML = "";
+    let uniqueCities = [];
+    for (let i = 0; i < data.payload.length; i++) {
+        let SMAPIdata = data.payload[i];
+        const city = SMAPIdata.city;
+        if (!uniqueCities.includes(city)) {
+            uniqueCities.push(city);
+        }
+    }
+    uniqueCities.sort();
+    for (let j = 0; j < uniqueCities.length; j++) {
+        const divElem = document.createElement("div");
+        const inputElem = document.createElement("input");
+        inputElem.id = uniqueCities[j];
+        inputElem.type = "checkbox";
+        const labelElem = document.createElement("label");
+        labelElem.textContent = uniqueCities[j];
+        labelElem.htmlFor = uniqueCities[j];
+        divElem.appendChild(inputElem);
+        divElem.appendChild(labelElem);
+        filterlist.appendChild(divElem);
+    }
+    if (filterlist) {
+        let filter = document.querySelectorAll("#filter-system input");
+        for (let i = 0; i < filter.length; i++) {
+            filter[i].addEventListener("change", filterResults);
+        }
+        citiesElem = document.querySelectorAll("input");
+        filterResults();
+    }
+}
 //Skapar kartan
 function initMap() {
     let zoom;
@@ -118,15 +156,14 @@ function changeMap() {
 
 //Filtrerar resultaten för SMAPI
 function filterResults() {
-    url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall";//Base URL
+    url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&order_by=city";//Base URL
     let typeURL = "&descriptions="; //filter url för typ av aktivitet
-    let cityURL = "&cities=";
     let typeCounter = 0;
+    let cityURL = "&cities=";
     cityCounter = 0;
-    //Filter för städer och län
     for (let i = 0; i < citiesElem.length; i++) {
         if (citiesElem[i].checked == true) {
-            cityURL += idCity[i] + ",";
+            cityURL += citiesElem[i].id + ",";
         }
         if (citiesElem[i].checked == false) {
             cityCounter++
@@ -136,7 +173,6 @@ function filterResults() {
         cityURL = "";
     }
 
-    //Filter för aktiviteter
     for (let i = 0; i < activityTypeElem.length; i++) {
         if (activityTypeElem[i].checked == true) {
             typeURL += activitiyId[i] + ",";
@@ -150,7 +186,6 @@ function filterResults() {
     }
     let favoritesArray = [];
     if (typeof localStorage !== "undefined") {
-        // localStorage is supported
         let storedFavorites = localStorage.getItem("favorites");
         if (storedFavorites !== null) {
             favoritesArray = storedFavorites.split(",");
@@ -179,6 +214,7 @@ function filterResults() {
 
 // Avcheckar alla filteralternativ
 function resetFilter() {
+    citiesElem = document.querySelectorAll("#popular input");
     for (let i = 0; i < activityTypeElem.length; i++) {
         activityTypeElem[i].checked = false;
     }
@@ -216,7 +252,7 @@ function showMarkers(data) {
         let lat = SMAPIdata.lat;
         let lng = SMAPIdata.lng;
         let button = document.createElement("a");
-        button.href = "information.html";
+        button.href = "information.html?id=" + SMAPIdata.id;
         button.id = SMAPIdata.id;
         button.innerText = "Läs mer här";
         currentActivity = SMAPIdata.description;
@@ -240,10 +276,6 @@ function showMarkers(data) {
         }
         let marker = L.marker([lat, lng], { icon: currentIcon });
         marker.bindPopup("<b>" + SMAPIdata.name + "</b><br> Typ: " + SMAPIdata.description + "<br>" + button.outerHTML);
-        marker.addEventListener("click", () => {
-            // Store the SMAPIdata.id in localStorage
-            localStorage.setItem("Id", button.id);
-        });
         markers.addLayer(marker);
     }
     markers.addTo(myMap);

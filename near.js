@@ -153,7 +153,7 @@ function showMarkers(data) {
         let lat = SMAPIdata.lat;
         let lng = SMAPIdata.lng;
         let button = document.createElement("a");
-        button.href = "information.html";
+        button.href = "information.html?id=" + SMAPIdata.id;
         button.id = SMAPIdata.id;
         button.innerText = "Läs mer här";
         currentActivity = SMAPIdata.description;
@@ -177,10 +177,6 @@ function showMarkers(data) {
         }
         let marker = L.marker([lat, lng], { icon: currentIcon });
         marker.bindPopup("<b>" + SMAPIdata.name + "</b><br> Typ: " + SMAPIdata.description + "<br>" + button.outerHTML);
-        marker.addEventListener("click", () => {
-            // Store the SMAPIdata.id in localStorage
-            localStorage.setItem("Id", button.id);
-        });
         markers.addLayer(marker);
     }
     markers.addTo(myMap);

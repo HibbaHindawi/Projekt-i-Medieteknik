@@ -15,7 +15,7 @@ main {
 }
 /*------------ H-taggar ------------*/
 hgroup{
-    padding: 25px 0px 10px 0px;
+    padding: 8px 0px 10px 0px;
     color: rgb(70, 70, 70);
 }
 hgroup h1{
@@ -280,13 +280,25 @@ nav #activeNav {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-#generateButton:hover,#generateButton:active {
+#randomInformation{
+    margin: 8px;
+    background-color: rgb(255, 65, 65);
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    float: right;
+    margin-top: 45px;
+}
+#randomInformation:hover, #randomInformation:active, #generateButton:hover,#generateButton:active {
     background-color: white;
     color: black;
 }
 
-#generateButton img{
+#randomInformation img, #generateButton img{
     margin: 10px;
     width: 30px;
 }
@@ -418,6 +430,5 @@ nav #activeNav {
 #listPush{
     display: flex;
     flex-direction: row;
-    margin-bottom: 10px;
 }
 /*------------------------------------------*/

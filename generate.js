@@ -5,7 +5,13 @@ let generateButton; // För knappen
 //Körs när sidan laddar
 function init() {
     generateButton = document.querySelector("#generateButton"); // Hämtar knappen
-    generateButton.addEventListener("click", getActivities); // Gör knappen aktiv
+    if (generateButton) {
+        generateButton.addEventListener("click", getActivities); // Gör knappen aktiv
+    }
+    randomInfoBtn = document.querySelector("#randomInformation");
+    if (randomInfoBtn) {
+        randomInfoBtn.addEventListener("click", getActivities);
+    }
 } // Slut init
 
 window.addEventListener("load", init);
@@ -29,8 +35,7 @@ function getActivities() {
 //Skapar slumpmässig index
 function getRandomActivity(jsonData) {
     const ix = Math.floor(Math.random() * jsonData.payload.length);
-    localStorage.setItem("Id", jsonData.payload[ix].id);
-    window.location.href = "information.html";
+    window.location.href = "information.html?id=" + jsonData.payload[ix].id;
 }
 
 //Skickar svar från getActivities till getRandomActivity

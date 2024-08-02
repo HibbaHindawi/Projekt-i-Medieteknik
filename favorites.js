@@ -52,7 +52,7 @@ function createList(data) {
         for (let i = 0; i < data.payload.length; i++) {
             let SMAPIdata = data.payload[i];
             let newA = document.createElement("a");
-            newA.href = "information.html";
+            newA.href = "information.html?id=" + SMAPIdata.id;
             newA.id = SMAPIdata.id;
             let favoritDiv = document.createElement("div");
             favoritDiv.classList.add("favorite");
@@ -79,10 +79,6 @@ function createList(data) {
             newDiv.innerText = SMAPIdata.name + " - " + SMAPIdata.city;
             newDiv.classList.add("title");
             newA.classList.add("plats");
-            newA.addEventListener("click", () => {
-                // Store the SMAPIdata.id in localStorage
-                localStorage.setItem("Id", newA.id);
-            });
             newA.appendChild(newDiv);
             let infoElem = document.createElement("div");
             infoElem.classList.add("infoList");

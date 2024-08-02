@@ -1,5 +1,5 @@
 let infoElem; //Element för att visa upp inforamtionen
-let selectUrl = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall"; //bas-url för SMAPI
+let selectUrl = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&descriptions=museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"; //bas-url för SMAPI
 let h1Elem; //Referens till sidans H1-tagg
 let icons = L.Icon.extend({ //Skapar inställningar för ikoner
     options: {
@@ -68,14 +68,21 @@ function newMap(lat, lng, name, description) {
 
 //Hämtar information från SMAPI
 function getInfo() {
-    let id = localStorage.getItem("Id");
+    const url = new URLSearchParams(window.location.search);
+    let id = url.get('id');
     selectUrl += ("&ids=" + id);
-
     fetch(selectUrl)
         .then(response => response.json())
         .then(data => {
-            setInfo(data);
-            createDesc(data);
+            //Kolla om datan är en kulturell aktivitet, om inte skicka användaren till sidan med listan för aktiviteter
+            if (data.payload.length == 0) {
+                window.location.href = "listaaktivitet.html"
+            }
+            //annars anropa funktioner för att strukturera informationen
+            else {
+                setInfo(data);
+                createDesc(data);
+            }
         })
         .catch(error => {
             console.error("det uppstod ett problem: " + error);
