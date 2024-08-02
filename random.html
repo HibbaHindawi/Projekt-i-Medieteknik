@@ -51,6 +51,45 @@
             <p>Tryck på knappen för en slumpmässig aktivitet</p>
         </hgroup>
         <button type="button" id="generateButton"><img src="/Bilder/dice.png" alt="Tärning som ikon">Slumpgenerator</button>
+        <p id="error"></p>
+        <div id="listPush">
+            <div id="filterParentRandom">
+                <h2 id="filterH2">Filtrera resultat:</h2>
+                <div>
+                    <div id="filter-system-random">
+                        <div>
+                            <h3>Rabatter och tillägg</h3>
+                            <div id="discountFilter">
+                                <div>
+                                    <input id="child" type="checkbox">
+                                    <label for="child">Barn Rabatt</label>
+                                </div>
+                                <div>
+                                    <input id="student" type="checkbox">
+                                    <label for="student">Student Rabatt</label>
+                                </div>
+                                <div>
+                                    <input id="senior" type="checkbox">
+                                    <label for="senior">Pensionär Rabatt</label>
+                                </div>
+                            </div>
+                            <div id="otherFilter">
+                                <div>
+                                    <input id="outdoor" type="checkbox">
+                                    <label for="outdoor">Utomhus</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="city">
+                            <h3>Stad:</h3>
+                            <div id="popular">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="reset">Återställ Filter</div>
+            </div>
+        </div>
     </main>
 </body>
 

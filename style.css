@@ -13,27 +13,32 @@ main {
     max-width: 60%;
     margin: 0 auto;
 }
+
 /*------------ H-taggar ------------*/
-hgroup{
+hgroup {
     padding: 8px 0px 10px 0px;
     color: rgb(70, 70, 70);
 }
-hgroup h1{
-    padding: 0; 	
+
+hgroup h1 {
+    padding: 0;
     font-size: 32px;
 }
-hgroup p{
+
+hgroup p {
     border-bottom: gray solid 2px;
     font-size: 18px;
     margin-top: 5px;
 }
 
-hgroup #startTitle{
+hgroup #startTitle {
     border-bottom: gray solid 2px;
 }
+
 hgroup h1 img {
     height: 24px;
 }
+
 /*------------------------------------------*/
 
 /*------------ Slide Meny ------------*/
@@ -44,9 +49,11 @@ hgroup h1 img {
 #toggleNav #checkboxLines {
     display: none;
 }
-#toggleNav .slide{
+
+#toggleNav .slide {
     overflow-y: auto;
 }
+
 /*------------------------------------------*/
 
 /*------------ Stora loggan och textfältet ------------*/
@@ -57,7 +64,8 @@ hgroup h1 img {
     box-shadow: 2px 2px 1px;
     border: solid 5px rgba(183, 183, 183, 0.3);
 }
-.info h2{
+
+.info h2 {
     font-size: 18px;
 
 }
@@ -69,6 +77,7 @@ hgroup h1 img {
     padding-top: 20px;
     margin-bottom: 5px;
 }
+
 /*------------------------------------------*/
 
 /*------------ Navigerings meny ------------*/
@@ -114,12 +123,14 @@ nav #activeNav {
     background-color: white;
     color: black;
 }
+
 /*------------------------------------------*/
 
 /*------------ Knappar på startsidan ------------*/
-#startButtons #startNear{
+#startButtons #startNear {
     display: none;
 }
+
 #startButtons {
     text-align: center;
     margin-bottom: 20px;
@@ -134,7 +145,7 @@ nav #activeNav {
 
 #startButtons h2 {
     margin-bottom: 5px;
-} 
+}
 
 #startButtons a {
     margin: 0 8px;
@@ -195,13 +206,15 @@ nav #activeNav {
     font-size: 18px;
     border-radius: 10px;
 }
+
 /*------------------------------------------*/
 
 /*----------------- Informationssida -----------------*/
 #placeDesc {
     margin-bottom: 20px;
 }
-#placeDesc img{
+
+#placeDesc img {
     height: 16px;
 }
 
@@ -225,23 +238,29 @@ nav #activeNav {
     display: inline;
     margin: 5px 5px 5px 0px;
 }
+
 #placeDesc a {
     display: inline;
     margin-top: 10px;
 }
-#placeDesc a:visited{
+
+#placeDesc a:visited {
     color: #0066cc;
 }
-#placeDesc a:hover{
+
+#placeDesc a:hover {
     color: #00386f;
 }
-#placeDesc span{
+
+#placeDesc span {
     font-weight: bold;
 }
-#otherInfo p{
+
+#otherInfo p {
     margin-bottom: 5px;
 }
-#otherInfo p:last-of-type{
+
+#otherInfo p:last-of-type {
     margin: 0;
 }
 
@@ -265,7 +284,6 @@ nav #activeNav {
 }
 
 #generateButton {
-    margin: 0 8px;
     background-color: rgb(255, 65, 65);
     padding: 10px 15px;
     color: white;
@@ -273,14 +291,13 @@ nav #activeNav {
     font-size: 22px;
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 80px;
     cursor: pointer;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 20px auto;
 }
-#randomInformation{
+
+#randomInformation {
     margin: 8px;
     background-color: rgb(255, 65, 65);
     padding: 5px;
@@ -293,12 +310,17 @@ nav #activeNav {
     float: right;
     margin-top: 45px;
 }
-#randomInformation:hover, #randomInformation:active, #generateButton:hover,#generateButton:active {
+
+#randomInformation:hover,
+#randomInformation:active,
+#generateButton:hover,
+#generateButton:active {
     background-color: white;
     color: black;
 }
 
-#randomInformation img, #generateButton img{
+#randomInformation img,
+#generateButton img {
     margin: 10px;
     width: 30px;
 }
@@ -317,9 +339,13 @@ nav #activeNav {
 /*------------------------------------------*/
 
 /*------------Filter Systemet--------------*/
-#filterParent{
+#filterParent {
     width: 280px;
 }
+#filterParentRandom{
+    width: 100%;
+}
+
 #filter-system {
     position: relative;
     margin-top: 5px;
@@ -329,27 +355,50 @@ nav #activeNav {
     height: 630px;
     overflow: auto;
 }
-#filter-system label{
+
+#filter-system-random {
+    position: relative;
+    margin-top: 5px;
+    padding: 20px;
+    background-color: rgb(240, 240, 240);
+    margin-right: 10px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: repeat(2, 1fr);
+}
+#filter-system-random #popular{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#filter-system label,
+#filter-system-random label {
     font-size: 18px;
 }
-#filter-system input{
+
+#filter-system input {
     height: 20px;
 }
-#filter-system img{
+
+#filter-system img {
     width: 17px;
 }
-#filter-system h3{
+
+#filter-system h3 {
     font-size: 18px;
     font-weight: bold;
     border-bottom: black solid 1px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
-#filterH2{
+
+#filterH2 {
     font-size: 20px;
     margin-bottom: 0;
     margin-left: 10px;
 }
+
 #reset {
     cursor: pointer;
     margin: 10px 0;
@@ -361,74 +410,91 @@ nav #activeNav {
     border-radius: 5px;
     margin-right: 10px;
 }
-#reset:hover{
+
+#reset:hover {
     background-color: rgb(225, 225, 224);
 }
+
 /*------------------------------------------*/
 
 /*------------ Lista ------------*/
-.plats .infoList{
+.plats .infoList {
     display: inline-block;
     padding: 0;
 }
-.infoList span{
+
+.infoList span {
     font-weight: bold;
 }
-.infoList p{
+
+.infoList p {
     margin: 10px;
 }
-.infoList img{
+
+.infoList img {
     width: 18px;
     height: 18px;
 }
-.parentDiv{
+
+.parentDiv {
     display: flex;
     background-color: rgb(240, 240, 240);
     border-right: gray solid 2px;
 }
-.parentDiv:not(:last-of-type){
+
+.parentDiv:not(:last-of-type) {
     border-bottom: black solid 1px;
 }
-.parentDiv:hover{
+
+.parentDiv:hover {
     background-color: rgb(187, 187, 187);
 }
-.plats{
+
+.plats {
     text-decoration: none;
     color: black;
     width: 95%;
 }
-.plats div{
+
+.plats div {
     padding: 14px 10px 5px;
 }
-.favorite{
+
+.favorite {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.favorite img{
+
+.favorite img {
     cursor: pointer;
     height: 26px;
     margin-right: 5px;
 }
-#results{
+
+#results {
     width: 75%;
     overflow: auto;
     height: 750px;
     border: gray solid 2px;
 }
-#results_favorites{
+
+#results_favorites {
     width: 100%;
     overflow: auto;
     height: 75vh;
     border: gray solid 2px;
 }
-#error{
+
+#error {
     text-align: center;
     font-size: 25px;
     color: rgb(255, 34, 34);
 }
-#listPush{
+
+#listPush {
     display: flex;
     flex-direction: row;
 }
+
 /*------------------------------------------*/

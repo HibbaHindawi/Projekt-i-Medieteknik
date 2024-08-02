@@ -1,3 +1,18 @@
+@media screen and (max-width:1300px){
+    #filter-system-random{
+        overflow: scroll;
+        grid-template-columns: 40% auto;
+    }
+    #filter-system-random #popular{
+        grid-template-columns: repeat(2, 160px);
+    }
+    #filter-system-random h3{
+        font-size: 18px;
+    }
+    #filter-system-random label{
+        font-size: 16px;
+    }
+}
 @media screen and (max-width: 1000px) {
 
     /*Lista*/
@@ -285,6 +300,15 @@
         margin: 5px;
         width: 30px;
     }
+    /*Slump filter*/
+    #filter-system-random{
+        display: block;
+        font-size: 18px;
+    }
+    #filter-system-random #popular{
+        grid-template-columns: repeat(2, auto);
+        
+    }
 }
 
 @media screen and (max-width:400px) {
@@ -316,5 +340,10 @@
     #results {
         width: 80%;
         margin-left: 0px;
+    }
+    
+    /*slump filter*/
+    #filter-system-random #popular{
+        display: block;
     }
 }
