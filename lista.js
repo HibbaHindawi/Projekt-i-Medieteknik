@@ -29,6 +29,8 @@ function init() {
     document.querySelector("#reset").addEventListener("click", resetFilter);
 }
 window.addEventListener("load", init);
+
+//Hämtar information från SMAPI för att skapa filter listan
 function getSMAPIonce() {
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&descriptions=museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"
     fetch(url)
@@ -40,6 +42,8 @@ function getSMAPIonce() {
             console.error("det uppstod ett problem: " + error);
         });
 }
+
+//Skapar filterlistan
 function createFilters(data) {
     filterlist = document.querySelector("#popular");
     filterlist.innerHTML = "";
@@ -73,6 +77,7 @@ function createFilters(data) {
         filterResults();
     }
 }
+
 //Filtrerar resultaten för SMAPI
 function filterResults() {
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&order_by=city";//Base URL

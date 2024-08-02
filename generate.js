@@ -10,7 +10,7 @@ let seniorElem; // Element för pensionär alternativet
 let outdoorElem; // Element för utomhus alternativet
 let citiesElem; // Element för städernas alternativ
 let filterlist; // Element för att skapa alternativ till städerna
-// ---------------------------------------------------
+
 //Körs när sidan laddar
 function init() {
     let filterElem = document.querySelector("#filter-system-random");
@@ -19,7 +19,7 @@ function init() {
     seniorElem = document.querySelector("#senior");
     outdoorElem = document.querySelector("#outdoor");
     errorElem = document.getElementById("error");
-    if(filterElem){
+    if (filterElem) {
         getSMAPIonce();
         resetFilter();
         document.querySelector("#reset").addEventListener("click", resetFilter);
@@ -32,11 +32,11 @@ function init() {
     if (randomInfoBtn) {
         randomInfoBtn.addEventListener("click", getActivities);
     }
-    
-} // Slut init
 
+} // Slut init
 window.addEventListener("load", init);
-// ---------------------------------------------------
+
+//Hämtar information för filter listan
 function getSMAPIonce() {
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&descriptions=museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"
     fetch(url)
@@ -62,6 +62,7 @@ function resetFilter() {
     filterResults();
 }
 
+//Skapar filter listan
 function createFilters(data) {
     filterlist = document.querySelector("#popular");
     filterlist.innerHTML = "";
@@ -95,6 +96,7 @@ function createFilters(data) {
         filterResults();
     }
 }
+
 //Filtrerar resultaten för SMAPI
 function filterResults() {
     apiUrl = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&descriptions=museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning";//Base URL
@@ -121,28 +123,28 @@ function filterResults() {
             cityCounter++
         }
     }
-    
+
     if (cityCounter == citiesElem.length) {
         cityURL = "";
     }
     //Övriga filter
     apiUrl += cityURL;
 }
-// ---------------------------------------------------
+
 //Hämtar data
 function getActivities() {
     fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-        if(errorElem){
-            errorElem.innerText = "";
-        }
-        getRandomActivity(data)
-    })
-    .catch(error => {
-        errorElem.innerText = "Aktiviteten som du söker finns inte, testa söka med andra filter.";
-        console.log("Error message: " + error);
-    })
+        .then(response => response.json())
+        .then(data => {
+            if (errorElem) {
+                errorElem.innerText = "";
+            }
+            getRandomActivity(data)
+        })
+        .catch(error => {
+            errorElem.innerText = "Aktiviteten som du söker finns inte, testa söka med andra filter.";
+            console.log("Error message: " + error);
+        })
 }
 
 //Skapar slumpmässig index

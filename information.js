@@ -275,5 +275,4 @@ function addToFavorite(event, id) {
         clickedIMG.src = "Bilder/Ikoner/heartFull.png";
         localStorage.setItem("favorites", favoritesArray);
     }
-
 }

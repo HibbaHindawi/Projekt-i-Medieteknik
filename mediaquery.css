@@ -1,18 +1,22 @@
-@media screen and (max-width:1300px){
-    #filter-system-random{
+@media screen and (max-width:1300px) {
+    #filter-system-random {
         overflow: scroll;
         grid-template-columns: 40% auto;
     }
-    #filter-system-random #popular{
+
+    #filter-system-random #popular {
         grid-template-columns: repeat(2, 160px);
     }
-    #filter-system-random h3{
+
+    #filter-system-random h3 {
         font-size: 18px;
     }
-    #filter-system-random label{
+
+    #filter-system-random label {
         font-size: 16px;
     }
 }
+
 @media screen and (max-width: 1000px) {
 
     /*Lista*/
@@ -287,7 +291,7 @@
     }
 
     /*Slump knapp*/
-    #randomInformation{
+    #randomInformation {
         margin: 0;
         font-size: 0px;
         cursor: pointer;
@@ -296,18 +300,22 @@
         right: 10px;
         z-index: 1;
     }
-    #randomInformation img, #generateButton img{
+
+    #randomInformation img,
+    #generateButton img {
         margin: 5px;
         width: 30px;
     }
+
     /*Slump filter*/
-    #filter-system-random{
+    #filter-system-random {
         display: block;
         font-size: 18px;
     }
-    #filter-system-random #popular{
+
+    #filter-system-random #popular {
         grid-template-columns: repeat(2, auto);
-        
+
     }
 }
 
@@ -341,9 +349,9 @@
         width: 80%;
         margin-left: 0px;
     }
-    
+
     /*slump filter*/
-    #filter-system-random #popular{
+    #filter-system-random #popular {
         display: block;
     }
 }

@@ -14,8 +14,8 @@ let activityTypeElem; // Element för aktivitet alternativen
 let activitiyId = ["museum", "slott", "kyrka", "fornlämning", "ateljé", "konstgalleri", "biograf"]; // Id för varje typ alternativ
 let citiesElem; // Element för städernas alternativ
 let filterlist; // Element för att skapa alternativ till städerna
-//Ikoner
 
+//Ikoner
 let icons = L.Icon.extend({ //Skapar inställningar för ikoner
     options: {
         iconSize: [25, 50],
@@ -59,6 +59,8 @@ function init() {
     document.querySelector("#reset").addEventListener("click", resetFilter);
 }
 window.addEventListener("load", init);
+
+//hämtar information från SMAPI för att skapa filterlistan
 function getSMAPIonce() {
     url = "https://smapi.lnu.se/api/?api_key=Q0wfRecE&controller=establishment&method=getall&descriptions=museum,slott,biograf,ateljé,konstgalleri,kyrka,fornlämning"
     fetch(url)
@@ -70,6 +72,8 @@ function getSMAPIonce() {
             console.error("det uppstod ett problem: " + error);
         });
 }
+
+//skapar filterlistan
 function createFilters(data) {
     filterlist = document.querySelector("#popular");
     filterlist.innerHTML = "";
@@ -103,6 +107,7 @@ function createFilters(data) {
         filterResults();
     }
 }
+
 //Skapar kartan
 function initMap() {
     let zoom;
