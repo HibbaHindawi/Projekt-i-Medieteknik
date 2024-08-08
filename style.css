@@ -342,7 +342,8 @@ nav #activeNav {
 #filterParent {
     width: 280px;
 }
-#filterParentRandom{
+
+#filterParentRandom {
     width: 100%;
 }
 
@@ -367,7 +368,8 @@ nav #activeNav {
     grid-template-columns: 1fr 3fr;
     grid-template-rows: repeat(2, 1fr);
 }
-#filter-system-random #popular{
+
+#filter-system-random #popular {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
