@@ -276,7 +276,7 @@
 
     /*Informationssida*/
     #h1Info {
-        margin-top: 35px;
+        margin-top: 60px;
     }
 
     #mapInfo {
@@ -292,13 +292,9 @@
 
     /*Slump knapp*/
     #randomInformation {
-        margin: 0;
+        margin-top: 15px;
         font-size: 0px;
         cursor: pointer;
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        z-index: 1;
     }
 
     #randomInformation img,
@@ -326,11 +322,6 @@
 
     hgroup p {
         font-size: 16px;
-    }
-
-    /*Informationssida*/
-    #h1Info {
-        margin-top: 35px;
     }
 
     /*Karta*/
